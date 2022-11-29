@@ -1,8 +1,12 @@
-import { useState } from "react";
 import "./styles/style.scss";
+import Nav from "./styles/components/Nav";
+import SearchBar from "./styles/components/SearchBar";
 
-function App() {
-  return <></>;
+export default function App() {
+  return (
+    <div>
+      <Nav />
+      <SearchBar />
+    </div>
+  );
 }
-
-export default App;
