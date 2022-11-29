@@ -1,0 +1,16 @@
+// swiper
+.swiper {
+  overflow: visible !important;
+
+  .swiper-slide {
+    width: min(80%, 50rem) !important;
+  }
+
+  .bobo {
+    background: var(--Bright-Red);
+  }
+
+  .swiper-pagination-horizontal {
+    bottom: -3rem !important;
+  }
+}
