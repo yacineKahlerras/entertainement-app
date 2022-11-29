@@ -6,11 +6,11 @@ export default function TrendingSlide({ src, year, genre, title }) {
     <div className="trending-slide">
       <img src={`https://image.tmdb.org/t/p/w500${src}`} alt={title}></img>
       <div className="slide-text">
-        <span>
+        <span className="info">
           {String(year).substring(0, 4)}{" "}
           <img src={movieLogo} alt="movie logo"></img> {genre}
         </span>
-        <span>{title}</span>
+        <span className="title">{title}</span>
       </div>
     </div>
   );

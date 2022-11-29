@@ -2,6 +2,35 @@
 
 .trending-container {
   margin-top: 4rem;
+
+  .trending-slide {
+    position: relative;
+    color: $white;
+    border-radius: 3rem;
+    overflow: hidden;
+
+    &::before {
+      content: "";
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: rgba(0, 0, 0, 0.315);
+    }
+
+    .slide-text {
+      position: absolute;
+      bottom: 2rem;
+      left: 3rem;
+
+      .info {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+    }
+  }
 }
 
 // swiper
