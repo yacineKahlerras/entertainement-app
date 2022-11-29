@@ -10,8 +10,8 @@ main {
     grid-template-columns: auto 1fr;
     grid-template-rows: auto 1fr;
     column-gap: 4rem;
-    margin-left: 3rem;
-    margin-top: 3rem;
+    margin: 3rem;
+    margin-bottom: 0;
 
     nav {
       grid-column: 1;

@@ -2,7 +2,8 @@ $background: var(--black-bg);
 $bgContainer: var(--dark-bg-container);
 $red: var(--red);
 $white: var(--white);
-$color: var(--blue);
+$blue: var(--blue);
+$white: var(--white);
 
 :root {
   --black-bg: #10141e;
@@ -10,4 +11,5 @@ $color: var(--blue);
   --red: #fc4747;
   --white: #ffffff;
   --blue: rgb(90, 105, 143);
+  --white: white;
 }

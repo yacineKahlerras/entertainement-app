@@ -1,7 +1,11 @@
 @use "themes" as *;
 
+$maxWidth1: var(--max-width-1);
+
 :root {
   font-size: 62.5%;
+
+  --max-width-1: min(85%, 27rem);
 }
 
 @mixin desktop {
