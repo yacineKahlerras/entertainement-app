@@ -1,36 +1,43 @@
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper";
 
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 
-// import required modules
-import { Pagination } from "swiper";
+import { data } from "../../data";
+import TrendingSlide from "./TrendingSlide";
 
 export default function Trending() {
   return (
-    <div>
+    <div className="trending-container">
       <Swiper
         slidesPerView={"auto"}
-        centeredSlides={true}
         spaceBetween={30}
         grabCursor={true}
         pagination={{
           clickable: true,
         }}
         modules={[Pagination]}
-        className="mySwiper"
       >
-        <SwiperSlide>Slide 1</SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide>
+        {Slides()}
       </Swiper>
     </div>
   );
+}
+
+function Slides() {
+  const allSlides = data.results.slice(0, 5).map((movie, index) => {
+    return (
+      <SwiperSlide key={index}>
+        <TrendingSlide
+          src={movie.backdrop_path}
+          year={movie.release_date}
+          genre="movie"
+          title={movie.title}
+        />
+      </SwiperSlide>
+    );
+  });
+
+  return allSlides;
 }

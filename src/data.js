@@ -1,4 +1,4 @@
-const data = {
+export const data = {
   page: 1,
   results: [
     {
@@ -366,7 +366,7 @@ const data = {
   total_results: 20000,
 };
 
-const movieData = {
+export const movieData = {
   adult: false,
   backdrop_path: "/rfnmMYuZ6EKOBvQLp2wqP21v7sI.jpg",
   belongs_to_collection: null,

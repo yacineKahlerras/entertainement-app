@@ -1,3 +1,9 @@
+@use "../utils/" as *;
+
+.trending-container {
+  margin-top: 4rem;
+}
+
 // swiper
 .swiper {
   overflow: visible !important;
