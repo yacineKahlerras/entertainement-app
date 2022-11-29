@@ -1,1 +1,21 @@
 @use "utils/" as *;
+@use "stylesComponents/" as *;
+
+main {
+  display: grid;
+  min-height: 100vh;
+  grid-template-rows: repeat(2, auto) 1fr;
+
+  @include desktop {
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+    column-gap: 4rem;
+    margin-left: 3rem;
+    margin-top: 3rem;
+
+    nav {
+      grid-column: 1;
+      grid-row: 1 / span 2;
+    }
+  }
+}
