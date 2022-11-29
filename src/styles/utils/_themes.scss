@@ -1,0 +1,15 @@
+:root {
+  --body-bg: #fafafa;
+  --body-desktop-bg-img: url("../../images/bg-desktop-light.jpg");
+  --body-mobile-bg-img: url("../../images/bg-mobile-light.jpg");
+  --task-bg: #ffffff;
+  --task-border: #e6e5ea;
+
+  --text-color-1: #4c4b5b;
+  --text-color-2: #cbcbcb;
+  --text-color-3: #5179bf;
+
+  --checkbox-empty-inactive: #e3e3e5;
+  --checkbox-empty-hover: linear-gradient(135deg, #68c5ff 17%, #ae7ff3 85%);
+  --checkbox-filled: linear-gradient(134.17deg, #68c5ff 27.18%, #ae7ff3 74.26%);
+}
