@@ -36,6 +36,16 @@ export default function Home() {
       category: "tv",
       linkKeyword: "airing_today",
     },
+    {
+      title: "On Air",
+      category: "tv",
+      linkKeyword: "on_the_air",
+    },
+    {
+      title: "Top Rated",
+      category: "tv",
+      linkKeyword: "top_rated",
+    },
   ];
 
   const sectionElements = sectionData.map((sec, index) => {
