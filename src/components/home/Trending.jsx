@@ -13,7 +13,7 @@ export default function Trending() {
     <div className="trending-container">
       <header className="section-header">
         <h1>Trending</h1>
-        <span className="header-category">movies</span>
+        {/* <span className="header-category">movies</span> */}
         <button>see more</button>
       </header>
       <Swiper
@@ -35,14 +35,13 @@ export default function Trending() {
 function Slides() {
   const dataResults = useContext(DataContext);
 
-  const allSlides = dataResults.slice(0, 15).map((movie, index) => {
-    if (movie.video !== false) return;
+  const allSlides = dataResults.slice(0, 11).map((movie, index) => {
     return (
       <SwiperSlide key={index}>
         <TrendingSlide
           src={movie.backdrop_path}
           year={movie.release_date}
-          genre="movie"
+          video={movie.video}
           title={movie.title}
         />
       </SwiperSlide>
