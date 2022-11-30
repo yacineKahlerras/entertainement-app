@@ -26,8 +26,8 @@ export default function HomeSectionSlide(props) {
       ></img>
       <div className="home-section-slide-text">
         <span className="info">
-          {String(year).substring(0, 4)}{" "}
-          <img src={movieLogo} alt="movie logo"></img> {genre}
+          {/* {String(year).substring(0, 4)}{" "} */}
+          {String(year)} <img src={movieLogo} alt="movie logo"></img> {genre}
         </span>
         <span className="title">{slideTitle}</span>
       </div>
