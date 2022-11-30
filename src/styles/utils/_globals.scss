@@ -14,8 +14,8 @@ $maxWidth1: var(--max-width-1);
   }
 }
 
-@mixin small-screen {
-  @media (max-width: 26em) {
+@mixin tablet {
+  @media (min-width: 47em) {
     @content;
   }
 }
