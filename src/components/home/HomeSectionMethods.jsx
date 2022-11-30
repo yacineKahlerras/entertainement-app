@@ -40,18 +40,37 @@ export function NowPlayingTheatersList(dataResults, sectionSizeLimit) {
 export function UpcomingMoviesList(dataResults, sectionSizeLimit) {
   const newList = [];
   for (let i = 0; i < dataResults.length; i++) {
+    console.log(dataResults.length);
     if (newList.length >= sectionSizeLimit) break;
     if (dataResults[i].video !== false) continue;
 
-    const thisYear = String(new Date().getFullYear());
-    const thisMonth = String(new Date().getMonth() + 1);
-    const thisDay = String(new Date().getDate());
-    const movieMonth = String(dataResults[i].release_date).slice(5, 7);
+    const date = new Date();
+    const thisYear = date.getFullYear();
+    const thisMonth = date.getMonth() + 1;
+    const thisDay = date.getDate();
 
-    if (thisYear !== String(dataResults[i].release_date).slice(0, 4)) continue;
-    if (movieMonth !== thisMonth && movieMonth !== lastMonth) continue;
+    const movieYear = parseInt(dataResults[i].release_date.slice(0, 4));
+    const movieMonth = parseInt(dataResults[i].release_date.slice(5, 7));
+    const movieDay = parseInt(dataResults[i].release_date.slice(8, 10));
 
-    newList.push(dataResults[i]);
+    if (movieYear >= thisYear) {
+      if (movieYear > thisYear) {
+        newList.push(dataResults[i]);
+        continue;
+      }
+      if (movieMonth >= thisMonth) {
+        if (movieMonth > thisMonth) {
+          newList.push(dataResults[i]);
+          continue;
+        }
+        if (movieDay >= thisDay) {
+          if (movieDay > thisDay) {
+            newList.push(dataResults[i]);
+            continue;
+          }
+        }
+      }
+    }
   }
   return newList;
 }

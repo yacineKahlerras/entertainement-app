@@ -2,13 +2,15 @@ import React, { useContext } from "react";
 import { DataContext } from "../App";
 import HomeSection from "./home/HomeSection";
 import Trending from "./home/Trending";
-import { PopularList, NowPlayingTheatersList } from "./home/HomeSectionMethods";
+import {
+  PopularList,
+  NowPlayingTheatersList,
+  UpcomingMoviesList,
+} from "./home/HomeSectionMethods";
 
 export default function Home() {
   const dataResults = useContext(DataContext);
   const sectionSizeLimit = 9;
-
-  console.log(new Date().getDate());
 
   const sectionData = [
     {
@@ -20,6 +22,11 @@ export default function Home() {
       title: "Now Playing",
       category: "movies",
       list: NowPlayingTheatersList(dataResults, sectionSizeLimit),
+    },
+    {
+      title: "Upcoming",
+      category: "movies",
+      list: UpcomingMoviesList(dataResults, sectionSizeLimit),
     },
   ];
 
