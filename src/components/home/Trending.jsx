@@ -10,6 +10,11 @@ import TrendingSlide from "./TrendingSlide";
 export default function Trending() {
   return (
     <div className="trending-container">
+      <header>
+        <h1>Trending</h1>
+        <span className="header-category">movies</span>
+        <button>see more</button>
+      </header>
       <Swiper
         slidesPerView={"auto"}
         spaceBetween={30}
@@ -26,7 +31,8 @@ export default function Trending() {
 }
 
 function Slides() {
-  const allSlides = data.results.slice(0, 5).map((movie, index) => {
+  const allSlides = data.results.slice(0, 15).map((movie, index) => {
+    if (movie.video !== false) return;
     return (
       <SwiperSlide key={index}>
         <TrendingSlide
