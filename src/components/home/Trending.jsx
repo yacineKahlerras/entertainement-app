@@ -1,13 +1,12 @@
+import TrendingSlide from "./TrendingSlide";
+import { useContext } from "react";
+import { DataContext } from "../../App";
+
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper";
 
 import "swiper/css";
 import "swiper/css/pagination";
-
-import { data } from "../../data";
-import TrendingSlide from "./TrendingSlide";
-import { useContext } from "react";
-import { DataContext } from "../../App";
 
 export default function Trending() {
   return (
@@ -25,6 +24,7 @@ export default function Trending() {
           clickable: true,
         }}
         modules={[Pagination]}
+        className="mySwiper"
       >
         {Slides()}
       </Swiper>

@@ -8,6 +8,8 @@ export default function Home() {
   const dataResults = useContext(DataContext);
   const sectionSizeLimit = 9;
 
+  console.log(new Date().getDate());
+
   const sectionData = [
     {
       title: "Popular",

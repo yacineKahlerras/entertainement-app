@@ -1,6 +1,8 @@
 @use "../utils" as *;
 
 .home-section {
+  margin-bottom: 6rem;
+
   .display-map {
     display: grid;
     grid-template-columns: auto;
@@ -23,15 +25,24 @@
       width: min(100%, 36.5rem);
       color: $white;
       margin: 0 auto;
+      cursor: pointer;
 
       @include tablet {
         width: min(100%, 50rem);
+      }
+
+      &:hover {
+        .slide-cover {
+          border-color: $blue;
+        }
       }
 
       .slide-cover {
         width: 100%;
         margin-bottom: 1rem;
         border-radius: 1em;
+        border: 0.2rem solid transparent;
+        transition: 0.5s ease-in-out;
       }
 
       .info {

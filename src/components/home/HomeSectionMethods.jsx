@@ -24,11 +24,29 @@ export function NowPlayingTheatersList(dataResults, sectionSizeLimit) {
     const thisYear = String(new Date().getFullYear());
     const thisMonth = String(new Date().getMonth() + 1);
     const lastMonth = String(new Date().getMonth());
-    const movieMonth = String(dataResults[0].release_date).slice(5, 7);
+    const movieMonth = String(dataResults[i].release_date).slice(5, 7);
 
-    console.log(
-      `movie: ${movieMonth}; thisMonth: ${thisMonth}; lastMonth: ${lastMonth}`
-    );
+    if (thisYear !== String(dataResults[i].release_date).slice(0, 4)) continue;
+    if (movieMonth !== thisMonth && movieMonth !== lastMonth) continue;
+
+    newList.push(dataResults[i]);
+  }
+  return newList;
+}
+
+/** gets the original list and makes
+ * a new where movie dates are after today's date
+ */
+export function UpcomingMoviesList(dataResults, sectionSizeLimit) {
+  const newList = [];
+  for (let i = 0; i < dataResults.length; i++) {
+    if (newList.length >= sectionSizeLimit) break;
+    if (dataResults[i].video !== false) continue;
+
+    const thisYear = String(new Date().getFullYear());
+    const thisMonth = String(new Date().getMonth() + 1);
+    const thisDay = String(new Date().getDate());
+    const movieMonth = String(dataResults[i].release_date).slice(5, 7);
 
     if (thisYear !== String(dataResults[i].release_date).slice(0, 4)) continue;
     if (movieMonth !== thisMonth && movieMonth !== lastMonth) continue;
