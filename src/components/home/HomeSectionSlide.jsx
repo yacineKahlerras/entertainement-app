@@ -5,7 +5,11 @@ export default function HomeSectionSlide(props) {
   const { src, title, genre, year } = props;
   return (
     <div className="home-section-slide">
-      <img src={`https://image.tmdb.org/t/p/w500${src}`} alt={title}></img>
+      <img
+        className="slide-cover"
+        src={`https://image.tmdb.org/t/p/w500${src}`}
+        alt={title}
+      ></img>
       <div className="home-section-slide-text">
         <span className="info">
           {String(year).substring(0, 4)}{" "}
