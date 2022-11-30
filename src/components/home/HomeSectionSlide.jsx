@@ -2,12 +2,26 @@ import React from "react";
 import movieLogo from "../../assets/icon-category-movie.svg";
 
 export default function HomeSectionSlide(props) {
-  const { src, title, genre, year } = props;
+  const {
+    item: {
+      title,
+      original_name,
+      release_date,
+      first_air_date,
+      video,
+      backdrop_path,
+    },
+  } = props;
+
+  const slideTitle = video === false ? title : original_name;
+  const year = video === false ? release_date : first_air_date;
+  const genre = video === false ? "movie" : "TV series";
+
   return (
     <div className="home-section-slide">
       <img
         className="slide-cover"
-        src={`https://image.tmdb.org/t/p/w500${src}`}
+        src={`https://image.tmdb.org/t/p/w500${backdrop_path}`}
         alt={title}
       ></img>
       <div className="home-section-slide-text">
@@ -15,7 +29,7 @@ export default function HomeSectionSlide(props) {
           {String(year).substring(0, 4)}{" "}
           <img src={movieLogo} alt="movie logo"></img> {genre}
         </span>
-        <span className="title">{title}</span>
+        <span className="title">{slideTitle}</span>
       </div>
     </div>
   );

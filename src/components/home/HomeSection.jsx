@@ -6,16 +6,7 @@ export default function HomeSection(props) {
 
   function slides() {
     const newList = list.map((element, index) => {
-      const { backdrop_path, title, release_date, video } = element;
-      return (
-        <HomeSectionSlide
-          key={index}
-          src={`https://image.tmdb.org/t/p/w500${backdrop_path}`}
-          title={title}
-          genre={video === false ? "movie" : "TV Series"}
-          year={release_date}
-        />
-      );
+      return <HomeSectionSlide key={index} item={element} />;
     });
     return newList;
   }
