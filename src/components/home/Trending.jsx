@@ -8,7 +8,7 @@ import { Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 
-export default function Trending() {
+export default function Trending(props) {
   return (
     <div className="trending-container">
       <header className="section-header">
@@ -25,19 +25,19 @@ export default function Trending() {
         modules={[Pagination]}
         className="mySwiper"
       >
-        {Slides()}
+        {Slides(props.mediaType ? props.mediaType : undefined)}
       </Swiper>
     </div>
   );
 }
 
-function Slides() {
+function Slides(mediaType = "all") {
   const [list, setList] = useState([]);
 
   useEffect(() => {
     axios
       .get(
-        `https://api.themoviedb.org/3/trending/all/day?api_key=982f680fcfc113f532f791142a6598c1`
+        `https://api.themoviedb.org/3/trending/${mediaType}/day?api_key=982f680fcfc113f532f791142a6598c1`
       )
       .then((res) => {
         const persons = res.data;

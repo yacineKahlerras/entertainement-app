@@ -4,6 +4,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
 import ErrorPage from "./components/error-page";
 import Home from "./components/Home";
+import MoviesPage from "./components/movies/MoviesPage";
+import TvShows from "./components/tvShow/TvShows";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +16,14 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Home />,
+      },
+      {
+        path: "movies",
+        element: <MoviesPage />,
+      },
+      {
+        path: "tv-shows",
+        element: <TvShows />,
       },
     ],
   },

@@ -3,31 +3,17 @@ import Nav from "./components/Nav";
 import SearchBar from "./components/SearchBar";
 import { Outlet } from "react-router-dom";
 import { createContext, useEffect, useState } from "react";
-import axios from "axios";
 import { data } from "./data";
 
 const api_key = "982f680fcfc113f532f791142a6598c1";
 export const DataContext = createContext(["haha"]);
 
 export default function App() {
-  const [dataState, setData] = useState(data.results);
-
-  // useEffect(() => {
-  //   axios
-  //     .get(`https://api.themoviedb.org/3/trending/all/day?api_key=${api_key}`)
-  //     .then((res) => {
-  //       const persons = res.data;
-  //       setData(persons.results);
-  //     });
-  // }, []);
-
   return (
     <main>
       <Nav />
       <SearchBar />
-      <DataContext.Provider value={dataState}>
-        <Outlet />
-      </DataContext.Provider>
+      <Outlet />
     </main>
   );
 }
