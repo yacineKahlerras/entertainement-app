@@ -5,13 +5,14 @@ main {
   display: grid;
   min-height: 100vh;
   grid-template-rows: repeat(2, auto) 1fr;
+  margin-bottom: 8rem;
 
   @include desktop {
     grid-template-columns: auto 1fr;
     grid-template-rows: auto 1fr;
     column-gap: 4rem;
     margin: 3rem;
-    margin-bottom: 0;
+    margin-bottom: 8rem;
 
     nav {
       grid-column: 1;

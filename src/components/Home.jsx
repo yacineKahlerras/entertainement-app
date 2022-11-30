@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { DataContext } from "../App";
 import HomeSection from "./home/HomeSection";
 import Trending from "./home/Trending";
+import { PopularList } from "./home/HomeSectionMethods";
 
 export default function Home() {
   const dataResults = useContext(DataContext);
@@ -12,7 +13,7 @@ export default function Home() {
       <HomeSection
         headerTitle="Popular"
         category="movies"
-        list={dataResults.slice(0, 9)}
+        list={PopularList(dataResults)}
       />
     </div>
   );
