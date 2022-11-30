@@ -1,32 +1,25 @@
-import React, { useContext } from "react";
-import { DataContext } from "../App";
+import React from "react";
 import HomeSection from "./home/HomeSection";
 import Trending from "./home/Trending";
-import {
-  PopularList,
-  NowPlayingTheatersList,
-  UpcomingMoviesList,
-} from "./home/HomeSectionMethods";
 
 export default function Home() {
-  const dataResults = useContext(DataContext);
   const sectionSizeLimit = 9;
 
   const sectionData = [
     {
       title: "Popular",
       category: "movies",
-      list: PopularList(dataResults, sectionSizeLimit),
+      linkKeyword: "popular",
     },
     {
       title: "Now Playing",
       category: "movies",
-      list: NowPlayingTheatersList(dataResults, sectionSizeLimit),
+      linkKeyword: "now_playing",
     },
     {
       title: "Upcoming",
       category: "movies",
-      list: UpcomingMoviesList(dataResults, sectionSizeLimit),
+      linkKeyword: "upcoming",
     },
   ];
 
@@ -36,7 +29,8 @@ export default function Home() {
         key={index}
         headerTitle={sec.title}
         category={sec.category}
-        list={sec.list}
+        linkKeyword={sec.linkKeyword}
+        sectionSizeLimit={sectionSizeLimit}
       />
     );
   });

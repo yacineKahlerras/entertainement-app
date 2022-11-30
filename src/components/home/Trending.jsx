@@ -1,6 +1,6 @@
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import TrendingSlide from "./TrendingSlide";
-import { useContext } from "react";
-import { DataContext } from "../../App";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper";
@@ -13,7 +13,6 @@ export default function Trending() {
     <div className="trending-container">
       <header className="section-header">
         <h1>Trending</h1>
-        {/* <span className="header-category">movies</span> */}
         <button>see more</button>
       </header>
       <Swiper
@@ -33,9 +32,20 @@ export default function Trending() {
 }
 
 function Slides() {
-  const dataResults = useContext(DataContext);
+  const [list, setList] = useState([]);
 
-  const allSlides = dataResults.slice(0, 11).map((movie, index) => {
+  useEffect(() => {
+    axios
+      .get(
+        `https://api.themoviedb.org/3/trending/all/day?api_key=982f680fcfc113f532f791142a6598c1`
+      )
+      .then((res) => {
+        const persons = res.data;
+        setList(persons.results.slice(0, 11));
+      });
+  }, []);
+
+  const allSlides = list.slice(0, 11).map((movie, index) => {
     return (
       <SwiperSlide key={index}>
         <TrendingSlide

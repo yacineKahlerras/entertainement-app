@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import HomeSectionSlide from "./HomeSectionSlide";
+import axios from "axios";
 
 export default function HomeSection(props) {
-  const { headerTitle, category, list } = props;
+  const [list, setList] = useState([]);
+  const { headerTitle, category, linkKeyword, sectionSizeLimit } = props;
+
+  useEffect(() => {
+    axios
+      .get(
+        `https://api.themoviedb.org/3/movie/${linkKeyword}?api_key=982f680fcfc113f532f791142a6598c1&language=en-US&page=1`
+      )
+      .then((res) => {
+        const persons = res.data;
+        setList(persons.results.slice(0, sectionSizeLimit));
+      });
+  }, []);
 
   function slides() {
     const newList = list.map((element, index) => {
