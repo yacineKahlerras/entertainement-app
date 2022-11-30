@@ -6,6 +6,8 @@ import "swiper/css/pagination";
 
 import { data } from "../../data";
 import TrendingSlide from "./TrendingSlide";
+import { useContext } from "react";
+import { DataContext } from "../../App";
 
 export default function Trending() {
   return (
@@ -31,7 +33,9 @@ export default function Trending() {
 }
 
 function Slides() {
-  const allSlides = data.results.slice(0, 15).map((movie, index) => {
+  const dataResults = useContext(DataContext);
+
+  const allSlides = dataResults.slice(0, 15).map((movie, index) => {
     if (movie.video !== false) return;
     return (
       <SwiperSlide key={index}>
