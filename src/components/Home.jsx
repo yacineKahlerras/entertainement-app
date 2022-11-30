@@ -21,6 +21,11 @@ export default function Home() {
       category: "movies",
       linkKeyword: "upcoming",
     },
+    {
+      title: "Top Rated",
+      category: "movies",
+      linkKeyword: "top_rated",
+    },
   ];
 
   const sectionElements = sectionData.map((sec, index) => {
