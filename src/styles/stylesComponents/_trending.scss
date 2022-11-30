@@ -4,6 +4,12 @@
   margin-top: 4rem;
   margin-bottom: 5rem;
 
+  .section-header {
+    h1 {
+      margin-right: auto;
+    }
+  }
+
   .trending-slide {
     position: relative;
     color: $white;
