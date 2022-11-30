@@ -10,7 +10,7 @@ import TrendingSlide from "./TrendingSlide";
 export default function Trending() {
   return (
     <div className="trending-container">
-      <header>
+      <header className="section-header">
         <h1>Trending</h1>
         <span className="header-category">movies</span>
         <button>see more</button>
