@@ -45,14 +45,20 @@ function Slides() {
       });
   }, []);
 
-  const allSlides = list.slice(0, 11).map((movie, index) => {
+  const allSlides = list.slice(0, 11).map((element, index) => {
     return (
       <SwiperSlide key={index}>
         <TrendingSlide
-          src={movie.backdrop_path}
-          year={movie.release_date}
-          video={movie.video}
-          title={movie.title}
+          src={element.backdrop_path}
+          year={
+            element.video === false
+              ? element.release_date
+              : element.first_air_date
+          }
+          video={element.video}
+          title={
+            element.video === false ? element.title : element.original_name
+          }
         />
       </SwiperSlide>
     );
