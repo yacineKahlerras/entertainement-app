@@ -16,9 +16,13 @@ export default function HomeSectionSlide(props) {
   const slideTitle = video === false ? title : original_name;
   const year = video === false ? release_date : first_air_date;
   const genre = video === false ? "movie" : "TV series";
+  const showSlide = backdrop_path !== null;
 
   return (
-    <div className="home-section-slide">
+    <div
+      className="home-section-slide"
+      style={{ display: showSlide ? "block" : "none" }}
+    >
       <img
         className="slide-cover"
         src={`https://image.tmdb.org/t/p/w500${backdrop_path}`}

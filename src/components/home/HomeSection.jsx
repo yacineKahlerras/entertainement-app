@@ -9,7 +9,7 @@ export default function HomeSection(props) {
   useEffect(() => {
     axios
       .get(
-        `https://api.themoviedb.org/3/movie/${linkKeyword}?api_key=982f680fcfc113f532f791142a6598c1&language=en-US&page=1`
+        `https://api.themoviedb.org/3/${category}/${linkKeyword}?api_key=982f680fcfc113f532f791142a6598c1&language=en-US&page=1`
       )
       .then((res) => {
         const persons = res.data;
@@ -28,7 +28,13 @@ export default function HomeSection(props) {
     <div className="home-section">
       <header className="section-header">
         <h1>{headerTitle}</h1>
-        <span className="header-category">{category}</span>
+        <span
+          className={`header-category ${
+            category === "movie" ? "" : "header-category-tv"
+          }`}
+        >
+          {category === "movie" ? "Movies" : "TV series"}
+        </span>
         <button>see more</button>
       </header>
       <div className="display-map">{slides()}</div>

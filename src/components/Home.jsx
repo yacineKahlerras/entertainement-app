@@ -8,23 +8,33 @@ export default function Home() {
   const sectionData = [
     {
       title: "Popular",
-      category: "movies",
+      category: "movie",
       linkKeyword: "popular",
     },
     {
       title: "Now Playing",
-      category: "movies",
+      category: "movie",
       linkKeyword: "now_playing",
     },
     {
       title: "Upcoming",
-      category: "movies",
+      category: "movie",
       linkKeyword: "upcoming",
     },
     {
       title: "Top Rated",
-      category: "movies",
+      category: "movie",
       linkKeyword: "top_rated",
+    },
+    {
+      title: "Popular",
+      category: "tv",
+      linkKeyword: "popular",
+    },
+    {
+      title: "Airing Today",
+      category: "tv",
+      linkKeyword: "airing_today",
     },
   ];
 
