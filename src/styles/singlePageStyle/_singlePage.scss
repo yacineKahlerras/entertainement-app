@@ -12,6 +12,8 @@
   }
 
   .text-side {
+    width: min(80%, 50rem);
+    margin: 0 auto;
     .title {
       text-align: center;
       margin: 0 auto;
