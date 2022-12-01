@@ -5,6 +5,7 @@ import ItemInfo from "./ItemInfo";
 import RatingStars from "./RatingStars";
 import Genres from "./Genres";
 import Casts from "./Casts";
+import ItemWebsites from "./ItemWebsites";
 
 export default function SingleItemPage(props) {
   const [itemInfo, setItemInfo] = useState([]);
@@ -33,6 +34,8 @@ export default function SingleItemPage(props) {
     title,
     number_of_episodes,
     overview,
+    homepage,
+    imdb_id,
   } = itemInfo;
 
   const paramsId = useParams();
@@ -49,6 +52,11 @@ export default function SingleItemPage(props) {
     status: status,
     release_date: release_date,
     first_air_date: first_air_date,
+  };
+  const itemWebsitesProps = {
+    homepage: homepage,
+    imdb_id: imdb_id,
+    title: title,
   };
 
   if (itemInfo.length < 1) return;
@@ -70,6 +78,7 @@ export default function SingleItemPage(props) {
           <p>{overview}</p>
         </div>
         <Casts id={id} mediaType={isMovie ? "movie" : "tv"} />
+        <ItemWebsites {...itemWebsitesProps} />
       </div>
     </div>
   );
