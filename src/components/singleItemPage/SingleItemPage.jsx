@@ -69,7 +69,7 @@ export default function SingleItemPage(props) {
           <h3>Synopsis</h3>
           <p>{overview}</p>
         </div>
-        <Casts id={id} />
+        <Casts id={id} mediaType={isMovie ? "movie" : "tv"} />
       </div>
     </div>
   );
