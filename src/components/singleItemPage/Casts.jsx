@@ -1,10 +1,19 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function Casts(props) {
   const [castList, setCastList] = useState([]);
-  const { id } = props;
+  const { id, mediaType } = props;
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    axios
+      .get(
+        `https://api.themoviedb.org/3/${mediaType}/${id}/credits?api_key=982f680fcfc113f532f791142a6598c1&language=en-US`
+      )
+      .then((res) => {
+        const persons = res.data;
+      });
+  }, []);
 
   const castElements = castList.map((element, index) => {
     return (
