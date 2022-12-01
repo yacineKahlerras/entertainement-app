@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
+import axios from "axios";
 
 export default function SingleItemPage(props) {
   const [itemInfo, setItemInfo] = useState([]);
