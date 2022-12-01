@@ -8,6 +8,17 @@ import starHalfFull from "../../assets/star-half-full.svg";
 export default function SingleItemPage(props) {
   const [itemInfo, setItemInfo] = useState([]);
 
+  useEffect(() => {
+    axios
+      .get(
+        `https://api.themoviedb.org/3/${mediaType}/${id}?api_key=982f680fcfc113f532f791142a6598c1&language=en-US`
+      )
+      .then((res) => {
+        const persons = res.data;
+        setItemInfo(persons);
+      });
+  }, []);
+
   const {
     poster_path,
     tagline,
@@ -22,25 +33,12 @@ export default function SingleItemPage(props) {
     number_of_episodes,
   } = itemInfo;
 
-  console.log("yaya", spoken_languages);
-
   const paramsId = useParams();
   const isMovie = paramsId.movieId ? true : false;
   const mediaType = isMovie ? "movie" : "tv";
   const id = isMovie ? paramsId.movieId : paramsId.tvId;
 
   const rating = (vote_average / 2).toFixed(1);
-
-  useEffect(() => {
-    axios
-      .get(
-        `https://api.themoviedb.org/3/${mediaType}/${id}?api_key=982f680fcfc113f532f791142a6598c1&language=en-US`
-      )
-      .then((res) => {
-        const persons = res.data;
-        setItemInfo(persons);
-      });
-  }, []);
 
   if (itemInfo.length < 1) return;
   return (
