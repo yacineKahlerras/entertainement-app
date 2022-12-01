@@ -8,22 +8,22 @@ export default function TvShows() {
   const sectionData = [
     {
       title: "Popular",
-      category: "tv",
+      mediaType: "tv",
       linkKeyword: "popular",
     },
     {
       title: "Airing Today",
-      category: "tv",
+      mediaType: "tv",
       linkKeyword: "airing_today",
     },
     {
       title: "On Air",
-      category: "tv",
+      mediaType: "tv",
       linkKeyword: "on_the_air",
     },
     {
       title: "Top Rated",
-      category: "tv",
+      mediaType: "tv",
       linkKeyword: "top_rated",
     },
   ];
@@ -33,7 +33,7 @@ export default function TvShows() {
       <HomeSection
         key={index}
         headerTitle={sec.title}
-        category={sec.category}
+        mediaType={sec.mediaType}
         linkKeyword={sec.linkKeyword}
         sectionSizeLimit={sectionSizeLimit}
       />

@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
+import CategoryPage from "./components/CategoryPage/CategoryPage";
 import ErrorPage from "./components/error-page";
 import Home from "./components/Home";
 import MoviesPage from "./components/movies/MoviesPage";
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
       {
         path: "tv-show/:tvId",
         element: <SingleItemPage />,
+      },
+      {
+        path: "category",
+        element: <CategoryPage />,
       },
     ],
   },

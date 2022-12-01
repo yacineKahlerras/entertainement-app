@@ -8,42 +8,42 @@ export default function Home() {
   const sectionData = [
     {
       title: "Popular",
-      category: "movie",
+      mediaType: "movie",
       linkKeyword: "popular",
     },
     {
       title: "Now Playing",
-      category: "movie",
+      mediaType: "movie",
       linkKeyword: "now_playing",
     },
     {
       title: "Upcoming",
-      category: "movie",
+      mediaType: "movie",
       linkKeyword: "upcoming",
     },
     {
       title: "Top Rated",
-      category: "movie",
+      mediaType: "movie",
       linkKeyword: "top_rated",
     },
     {
       title: "Popular",
-      category: "tv",
+      mediaType: "tv",
       linkKeyword: "popular",
     },
     {
       title: "Airing Today",
-      category: "tv",
+      mediaType: "tv",
       linkKeyword: "airing_today",
     },
     {
       title: "On Air",
-      category: "tv",
+      mediaType: "tv",
       linkKeyword: "on_the_air",
     },
     {
       title: "Top Rated",
-      category: "tv",
+      mediaType: "tv",
       linkKeyword: "top_rated",
     },
   ];
@@ -53,7 +53,7 @@ export default function Home() {
       <HomeSection
         key={index}
         headerTitle={sec.title}
-        category={sec.category}
+        mediaType={sec.mediaType}
         linkKeyword={sec.linkKeyword}
         sectionSizeLimit={sectionSizeLimit}
       />

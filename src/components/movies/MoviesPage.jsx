@@ -8,22 +8,22 @@ export default function MoviesPage() {
   const sectionData = [
     {
       title: "Popular",
-      category: "movie",
+      mediaType: "movie",
       linkKeyword: "popular",
     },
     {
       title: "Now Playing",
-      category: "movie",
+      mediaType: "movie",
       linkKeyword: "now_playing",
     },
     {
       title: "Upcoming",
-      category: "movie",
+      mediaType: "movie",
       linkKeyword: "upcoming",
     },
     {
       title: "Top Rated",
-      category: "movie",
+      mediaType: "movie",
       linkKeyword: "top_rated",
     },
   ];
@@ -33,7 +33,7 @@ export default function MoviesPage() {
       <HomeSection
         key={index}
         headerTitle={sec.title}
-        category={sec.category}
+        mediaType={sec.mediaType}
         linkKeyword={sec.linkKeyword}
         sectionSizeLimit={sectionSizeLimit}
       />
