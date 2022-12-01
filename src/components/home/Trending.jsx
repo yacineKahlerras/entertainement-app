@@ -59,6 +59,7 @@ function Slides(mediaType = "all") {
           title={
             element.video === false ? element.title : element.original_name
           }
+          id={element.id}
         />
       </SwiperSlide>
     );

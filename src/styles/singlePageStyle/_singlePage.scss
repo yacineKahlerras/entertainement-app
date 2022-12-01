@@ -14,7 +14,7 @@
   }
 
   .item-poster {
-    width: min(80%, 30rem);
+    width: min(90%, 30rem);
     margin: 0 auto;
     margin-bottom: 2rem;
   }
@@ -23,14 +23,17 @@
     width: min(80%, 50rem);
     margin: 0 auto;
 
-    .title {
+    .title,
+    .tagline {
+      display: flex;
+      justify-content: center;
       text-align: center;
-      margin: 0 auto;
 
       @include desktop {
+        text-align: left;
+        justify-content: start;
         margin: 0;
         margin-bottom: 0.5rem;
-        text-align: left;
       }
     }
 
@@ -77,7 +80,14 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 1rem;
+
+        @include desktop {
+          align-items: start;
+        }
+
+        .item-info-title {
+          opacity: 0.7;
+        }
       }
     }
 
@@ -124,6 +134,10 @@
       display: flex;
       justify-content: center;
       gap: 2rem;
+
+      @include desktop {
+        justify-content: start;
+      }
 
       .home-page-link {
         display: flex;
