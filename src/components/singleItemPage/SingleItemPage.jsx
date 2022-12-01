@@ -19,7 +19,10 @@ export default function SingleItemPage(props) {
     first_air_date,
     status,
     title,
+    number_of_episodes,
   } = itemInfo;
+
+  console.log("yaya", spoken_languages);
 
   const paramsId = useParams();
   const isMovie = paramsId.movieId ? true : false;
@@ -39,6 +42,7 @@ export default function SingleItemPage(props) {
       });
   }, []);
 
+  if (itemInfo.length < 1) return;
   return (
     <div className="single-page-container">
       <img
@@ -53,6 +57,15 @@ export default function SingleItemPage(props) {
           <h2 className="rating">{rating}</h2>
           <RatingStars rating={rating} />
         </div>
+        <ItemInfo
+          isMovie={isMovie}
+          runtime={runtime}
+          number_of_episodes={number_of_episodes}
+          spoken_languages={spoken_languages}
+          status={status}
+          release_date={release_date}
+          first_air_date={first_air_date}
+        />
       </div>
     </div>
   );
@@ -61,7 +74,8 @@ export default function SingleItemPage(props) {
 function RatingStars(props) {
   const { rating } = props;
   const fullStarsCount = Math.floor(rating);
-  const emptyStarsCount = 5 - fullStarsCount > 0 ? 5 - fullStarsCount : 0;
+  const emptyStarsCount =
+    Math.floor(5 - rating) > 0 ? Math.floor(5 - rating) : 0;
   const halfStar = rating % 1;
 
   let fullStarsElements = [];
@@ -92,4 +106,42 @@ function RatingStars(props) {
       {emptyStarsElements}
     </div>
   );
+}
+
+function ItemInfo(props) {
+  const {
+    isMovie,
+    runtime,
+    number_of_episodes,
+    spoken_languages,
+    status,
+    release_date,
+    first_air_date,
+  } = props;
+
+  const tempElementsData = [
+    {
+      title: "Length",
+      value: isMovie ? `${runtime}mins` : `${number_of_episodes} apisodes`,
+    },
+    { title: "Language", value: spoken_languages[0].name },
+    {
+      title: "Year",
+      value: isMovie
+        ? String(release_date).slice(0, 4)
+        : String(first_air_date).slice(0, 4),
+    },
+    { title: "Status", value: status },
+  ];
+
+  const infoElements = tempElementsData.map((info, index) => {
+    return (
+      <div key={index} className="item-info-container">
+        <span className="item-info-title">{info.title}</span>
+        <span className="item-info-value">{info.value}</span>
+      </div>
+    );
+  });
+
+  return <div className="item-info">{infoElements}</div>;
 }
