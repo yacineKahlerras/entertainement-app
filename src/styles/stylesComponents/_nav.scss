@@ -41,6 +41,13 @@ nav {
       .selected-page {
         filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(11deg)
           brightness(109%) contrast(101%);
+
+        &:focus,
+        &:active,
+        &:hover {
+          filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(11deg)
+            brightness(109%) contrast(101%);
+        }
       }
     }
   }

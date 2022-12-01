@@ -9,6 +9,18 @@ export default function SingleItemPage(props) {
   const mediaType = isMovie ? "movie" : "tv";
   const id = isMovie ? paramsId.movieId : paramsId.tvId;
 
+  const {
+    poster_path,
+    tagline,
+    genres,
+    vote_average,
+    spoken_languages,
+    runtime,
+    release_date,
+    first_air_date,
+    status,
+  } = itemInfo;
+
   useEffect(() => {
     axios
       .get(
@@ -16,9 +28,9 @@ export default function SingleItemPage(props) {
       )
       .then((res) => {
         const persons = res.data;
-        setItemInfo();
+        setItemInfo(persons);
       });
   }, []);
 
-  return <h1>hahaaaaaaaaaaa</h1>;
+  return <div className="single-page-container"></div>;
 }
