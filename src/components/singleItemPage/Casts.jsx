@@ -11,7 +11,8 @@ export default function Casts(props) {
         `https://api.themoviedb.org/3/${mediaType}/${id}/credits?api_key=982f680fcfc113f532f791142a6598c1&language=en-US`
       )
       .then((res) => {
-        const persons = res.data;
+        const persons = res.data.cast;
+        console.log(persons);
       });
   }, []);
 
