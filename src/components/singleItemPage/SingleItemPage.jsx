@@ -4,10 +4,6 @@ import axios from "axios";
 
 export default function SingleItemPage(props) {
   const [itemInfo, setItemInfo] = useState([]);
-  const paramsId = useParams();
-  const isMovie = paramsId.movieId ? true : false;
-  const mediaType = isMovie ? "movie" : "tv";
-  const id = isMovie ? paramsId.movieId : paramsId.tvId;
 
   const {
     poster_path,
@@ -19,7 +15,15 @@ export default function SingleItemPage(props) {
     release_date,
     first_air_date,
     status,
+    title,
   } = itemInfo;
+
+  const paramsId = useParams();
+  const isMovie = paramsId.movieId ? true : false;
+  const mediaType = isMovie ? "movie" : "tv";
+  const id = isMovie ? paramsId.movieId : paramsId.tvId;
+
+  const rating = (vote_average / 2).toFixed(1);
 
   useEffect(() => {
     axios
@@ -32,5 +36,20 @@ export default function SingleItemPage(props) {
       });
   }, []);
 
-  return <div className="single-page-container"></div>;
+  return (
+    <div className="single-page-container">
+      <img
+        className="item-poster"
+        src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+        alt={title}
+      />
+      <div className="text-side">
+        <h1 className="title">{title}</h1>
+        <span className="tagline">{tagline}</span>
+        <div className="rating-container">
+          <h2 className="rating">{rating}</h2>
+        </div>
+      </div>
+    </div>
+  );
 }
