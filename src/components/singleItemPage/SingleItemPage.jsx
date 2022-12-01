@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import axios from "axios";
+import starEmpty from "../../assets/star-empty.svg";
+import starFull from "../../assets/star-full.svg";
+import starHalfFull from "../../assets/star-half-full.svg";
 
 export default function SingleItemPage(props) {
   const [itemInfo, setItemInfo] = useState([]);
@@ -48,8 +51,45 @@ export default function SingleItemPage(props) {
         <span className="tagline">{tagline}</span>
         <div className="rating-container">
           <h2 className="rating">{rating}</h2>
+          <RatingStars rating={rating} />
         </div>
       </div>
+    </div>
+  );
+}
+
+function RatingStars(props) {
+  const { rating } = props;
+  const fullStarsCount = Math.floor(rating);
+  const emptyStarsCount = 5 - fullStarsCount > 0 ? 5 - fullStarsCount : 0;
+  const halfStar = rating % 1;
+
+  let fullStarsElements = [];
+  let emptyStarsElements = [];
+
+  for (let i = 0; i < fullStarsCount; i++) {
+    fullStarsElements.push(
+      <img key={i} src={starFull} alt="full star icon" className="star" />
+    );
+  }
+
+  for (let i = 0; i < emptyStarsCount; i++) {
+    emptyStarsElements.push(
+      <img key={i} src={starEmpty} alt="full star icon" className="star" />
+    );
+  }
+
+  const halfStarElement = halfStar ? (
+    <img src={starHalfFull} alt="half full star icon" className="star" />
+  ) : (
+    ""
+  );
+
+  return (
+    <div className="stars-container">
+      {fullStarsElements}
+      {halfStarElement}
+      {emptyStarsElements}
     </div>
   );
 }

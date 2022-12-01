@@ -2,4 +2,13 @@
 
 .single-page-container {
   color: $white;
+
+  .text-side {
+    .stars-container {
+      img {
+        filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(11deg)
+          brightness(109%) contrast(101%);
+      }
+    }
+  }
 }
