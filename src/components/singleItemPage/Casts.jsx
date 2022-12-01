@@ -4,6 +4,7 @@ import axios from "axios";
 export default function Casts(props) {
   const [castList, setCastList] = useState([]);
   const { id, mediaType } = props;
+  const castNumberLimit = 20;
 
   useEffect(() => {
     axios
@@ -11,8 +12,13 @@ export default function Casts(props) {
         `https://api.themoviedb.org/3/${mediaType}/${id}/credits?api_key=982f680fcfc113f532f791142a6598c1&language=en-US`
       )
       .then((res) => {
-        const persons = res.data.cast;
-        console.log(persons);
+        const fetchedCastList = res.data.cast;
+        const castNames = [];
+        for (let i = 0; i < fetchedCastList.length; i++) {
+          if (castNames.length >= castNumberLimit) break;
+          castNames.push(fetchedCastList[i].name);
+        }
+        setCastList(castNames);
       });
   }, []);
 
