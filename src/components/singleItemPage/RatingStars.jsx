@@ -32,10 +32,13 @@ export default function RatingStars(props) {
   );
 
   return (
-    <div className="stars-container">
-      {fullStarsElements}
-      {halfStarElement}
-      {emptyStarsElements}
+    <div className="rating-container">
+      <h2 className="rating">{rating}</h2>
+      <div className="stars-container">
+        {fullStarsElements}
+        {halfStarElement}
+        {emptyStarsElements}
+      </div>
     </div>
   );
 }

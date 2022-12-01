@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import ItemInfo from "./ItemInfo";
 import RatingStars from "./RatingStars";
+import Genres from "./Genres";
+import Casts from "./Casts";
 
 export default function SingleItemPage(props) {
   const [itemInfo, setItemInfo] = useState([]);
@@ -30,6 +32,7 @@ export default function SingleItemPage(props) {
     status,
     title,
     number_of_episodes,
+    overview,
   } = itemInfo;
 
   const paramsId = useParams();
@@ -39,13 +42,13 @@ export default function SingleItemPage(props) {
 
   const rating = (vote_average / 2).toFixed(1);
   const itemInfoProps = {
-    isMovie: { isMovie },
-    runtime: { runtime },
-    number_of_episodes: { number_of_episodes },
-    spoken_languages: { spoken_languages },
-    status: { status },
-    release_date: { release_date },
-    first_air_date: { first_air_date },
+    isMovie: isMovie,
+    runtime: runtime,
+    number_of_episodes: number_of_episodes,
+    spoken_languages: spoken_languages,
+    status: status,
+    release_date: release_date,
+    first_air_date: first_air_date,
   };
 
   if (itemInfo.length < 1) return;
@@ -59,11 +62,14 @@ export default function SingleItemPage(props) {
       <div className="text-side">
         <h1 className="title">{title}</h1>
         <span className="tagline">{tagline}</span>
-        <div className="rating-container">
-          <h2 className="rating">{rating}</h2>
-          <RatingStars rating={rating} />
-        </div>
+        <RatingStars rating={rating} />
         <ItemInfo {...itemInfoProps} />
+        <Genres genres={genres} />
+        <div className="synopsis">
+          <h3>Synopsis</h3>
+          <p>{overview}</p>
+        </div>
+        <Casts id={id} />
       </div>
     </div>
   );
