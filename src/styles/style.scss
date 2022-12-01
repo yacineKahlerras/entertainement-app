@@ -3,15 +3,19 @@
 @use "singlePageStyle/" as *;
 
 main {
+  margin: 0 auto;
   display: grid;
   min-height: 100vh;
   grid-template-rows: repeat(2, auto) 1fr;
 
   @include desktop {
+    width: min(90%, 124rem);
     grid-template-columns: auto 1fr;
     grid-template-rows: auto 1fr;
     column-gap: 4rem;
     margin: 3rem;
+    margin-right: auto;
+    margin-left: auto;
     margin-bottom: 0;
 
     nav {
