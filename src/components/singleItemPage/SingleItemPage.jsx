@@ -32,6 +32,7 @@ export default function SingleItemPage(props) {
     first_air_date,
     status,
     title,
+    original_name,
     number_of_episodes,
     overview,
     homepage,
@@ -68,12 +69,12 @@ export default function SingleItemPage(props) {
         alt={title}
       />
       <div className="text-side">
-        <h1 className="title">{title}</h1>
+        <h1 className="title">{isMovie ? title : original_name}</h1>
         <span className="tagline">{tagline}</span>
         <RatingStars rating={rating} />
         <ItemInfo {...itemInfoProps} />
         <Genres genres={genres} />
-        <div className="synopsis">
+        <div className="synopsis-container">
           <h3>Synopsis</h3>
           <p>{overview}</p>
         </div>

@@ -14,7 +14,7 @@ export default function ItemWebsites(props) {
       {imdb_id ? (
         <a
           href={`https://www.imdb.com/title/${imdb_id}/`}
-          className="home-page-link"
+          className="imdb-link"
           target={"_blank"}
         >
           IMDB <img src={imdbIcon} alt={`${title} homepage`} />
