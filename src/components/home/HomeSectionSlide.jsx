@@ -1,9 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import movieLogo from "../../assets/icon-category-movie.svg";
 
 export default function HomeSectionSlide(props) {
   const {
     item: {
+      id,
       title,
       original_name,
       release_date,
@@ -19,22 +21,24 @@ export default function HomeSectionSlide(props) {
   const showSlide = backdrop_path !== null;
 
   return (
-    <div
-      className="home-section-slide"
-      style={{ display: showSlide ? "block" : "none" }}
-    >
-      <img
-        className="slide-cover"
-        src={`https://image.tmdb.org/t/p/w500${backdrop_path}`}
-        alt={title}
-      ></img>
-      <div className="home-section-slide-text">
-        <span className="info">
-          {String(year).substring(0, 4)}{" "}
-          <img src={movieLogo} alt="movie logo"></img> {genre}
-        </span>
-        <span className="title">{slideTitle}</span>
+    <Link to={`/${video === false ? "movie" : "tv-show"}/${id}`}>
+      <div
+        className="home-section-slide"
+        style={{ display: showSlide ? "block" : "none" }}
+      >
+        <img
+          className="slide-cover"
+          src={`https://image.tmdb.org/t/p/w500${backdrop_path}`}
+          alt={title}
+        ></img>
+        <div className="home-section-slide-text">
+          <span className="info">
+            {String(year).substring(0, 4)}{" "}
+            <img src={movieLogo} alt="movie logo"></img> {genre}
+          </span>
+          <span className="title">{slideTitle}</span>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }

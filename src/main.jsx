@@ -5,6 +5,7 @@ import App from "./App";
 import ErrorPage from "./components/error-page";
 import Home from "./components/Home";
 import MoviesPage from "./components/movies/MoviesPage";
+import SingleItemPage from "./components/singleItemPage/SingleItemPage";
 import TvShows from "./components/tvShow/TvShows";
 
 const router = createBrowserRouter([
@@ -24,6 +25,14 @@ const router = createBrowserRouter([
       {
         path: "tv-shows",
         element: <TvShows />,
+      },
+      {
+        path: "movie/:movieId",
+        element: <SingleItemPage />,
+      },
+      {
+        path: "tv-show/:tvId",
+        element: <SingleItemPage />,
       },
     ],
   },

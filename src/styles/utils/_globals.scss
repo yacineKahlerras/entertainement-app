@@ -24,4 +24,8 @@ body {
   font-size: 1.6rem;
   font-family: "Outfit", sans-serif;
   background: $background;
+
+  a {
+    text-decoration: none;
+  }
 }
