@@ -6,11 +6,15 @@ import { GetTitle } from "./CategoryPageMethods";
 
 export default function CategoryPage() {
   const [list, setList] = useState([]);
+  const [page, setPage] = useState(1);
+
   const [searchParams] = useSearchParams();
   const mediaType = searchParams.get("mediaType");
   const categoryList = searchParams.get("categoryList");
-  const page = searchParams.get("page") ? searchParams.get("page") : 1;
-  const sectionSizeLimit = 30;
+
+  useEffect(() => {
+    setPage(searchParams.get("page") ? searchParams.get("page") : 1);
+  }, []);
 
   useEffect(() => {
     axios
@@ -19,7 +23,7 @@ export default function CategoryPage() {
       )
       .then((res) => {
         const persons = res.data;
-        setList(persons.results.slice(0, sectionSizeLimit));
+        setList(persons.results);
       });
   }, []);
 
