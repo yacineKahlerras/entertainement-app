@@ -16,9 +16,16 @@ export default function CategoryPage() {
   const mediaType = searchParams.get("mediaType");
   const categoryList = searchParams.get("categoryList");
 
-  console.log("render");
+  useEffect(() => {
+    FetchData();
+    setPage(1);
+  }, [categoryList]);
 
   useEffect(() => {
+    FetchData();
+  }, [page]);
+
+  function FetchData() {
     axios
       .get(
         `https://api.themoviedb.org/3/${mediaType}/${categoryList}?api_key=982f680fcfc113f532f791142a6598c1&language=en-US&page=${page}`
@@ -28,7 +35,7 @@ export default function CategoryPage() {
         setPagesCount(data.total_pages);
         setList(data.results);
       });
-  }, [page]);
+  }
 
   function changePage(increment = 1) {
     const newPageIndex = page + increment;
