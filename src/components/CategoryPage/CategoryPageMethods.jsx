@@ -22,13 +22,23 @@ export function DropDownElements(props) {
     if (element.mediaType === mediaType)
       return (
         <Link
-          key={index}
+          key={element.title}
           to={`/category/?categoryList=${element.linkKeyword}&mediaType=${mediaType}`}
         >
           {element.title}
         </Link>
       );
   });
+  dropDownLinks.push(
+    <Link
+      key={"Trending"}
+      to={`/category/?categoryList=trending&mediaType=${
+        mediaType === "all" ? "all" : mediaType
+      }`}
+    >
+      Trending
+    </Link>
+  );
 
   return <div className="section-dropdown">{dropDownLinks}</div>;
 }

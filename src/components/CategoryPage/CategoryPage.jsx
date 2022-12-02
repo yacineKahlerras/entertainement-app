@@ -55,7 +55,9 @@ export default function CategoryPage() {
             ? "TV series"
             : "All"}
         </span>
-        <CategorySelector mediaType={mediaType} />
+        <CategorySelector
+          mediaType={mediaType === "all" ? "movie" : mediaType}
+        />
       </header>
 
       {/* pages slides */}
