@@ -17,10 +17,6 @@ export default function CategoryPage() {
   const categoryList = searchParams.get("categoryList");
 
   useEffect(() => {
-    setPage(searchParams.get("page") ? searchParams.get("page") : 1);
-  }, []);
-
-  useEffect(() => {
     axios
       .get(
         `https://api.themoviedb.org/3/${mediaType}/${categoryList}?api_key=982f680fcfc113f532f791142a6598c1&language=en-US&page=${page}`

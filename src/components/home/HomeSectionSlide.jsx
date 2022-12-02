@@ -20,7 +20,7 @@ export default function HomeSectionSlide(props) {
   // calculates the height of the cover image based on an aspect ratio
   function slideCoverContainerHeight() {
     if (!coverImg.current) return {};
-    return { height: `${coverImg.current.offsetWidth * 0.5668}px` };
+    return { height: `${coverImg.current.offsetWidth * 0.562}px` };
   }
 
   // slide information based on wether its a movie or tv-show
