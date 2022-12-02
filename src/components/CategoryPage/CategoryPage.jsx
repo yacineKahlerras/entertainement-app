@@ -29,13 +29,14 @@ export default function CategoryPage() {
       });
 
     // gets the list of the things
-    axios
-      .get(GetFetchLink({ mediaType, categoryList, page, genresList }))
-      .then((res) => {
-        const data = res.data;
-        setPagesCount(data.total_pages);
-        setList(data.results);
-      });
+    if (genresList.length > 0)
+      axios
+        .get(GetFetchLink({ mediaType, categoryList, page, genresList }))
+        .then((res) => {
+          const data = res.data;
+          setPagesCount(data.total_pages);
+          setList(data.results);
+        });
   }
 
   useEffect(() => {
