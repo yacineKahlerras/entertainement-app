@@ -1,4 +1,5 @@
 import { sectionData } from "../Home";
+import { api_key } from "../../App";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -29,4 +30,16 @@ export function DropDownElements(props) {
   });
 
   return <div className="section-dropdown">{dropDownLinks}</div>;
+}
+
+/** returns the link to fetch data from
+ *  based on some data
+ */
+export function GetFetchLink(props) {
+  const { mediaType, categoryList, page } = props;
+
+  if (categoryList === "trending") {
+    return `https://api.themoviedb.org/3/trending/${mediaType}/day?api_key=${api_key}&page=${page}`;
+  }
+  return `https://api.themoviedb.org/3/${mediaType}/${categoryList}?api_key=${api_key}&language=en-US&page=${page}`;
 }

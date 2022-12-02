@@ -222,8 +222,8 @@
     color: #102770;
   }
   a:hover {
-    color: #102770;
-    background-color: #ffeba7;
+    color: $white;
+    background-color: $blue;
   }
   .dark-light:checked ~ .sec-center .section-dropdown a:hover {
     color: #ffeba7;

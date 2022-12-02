@@ -1,10 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
 import HomeSectionSlide from "../home/HomeSectionSlide";
-import { GetTitle } from "./CategoryPageMethods";
-import leftArrowIcon from "../../assets/arrow-left-short.svg";
-import rightArrowIcon from "../../assets/arrow-right-short.svg";
+import { GetTitle, GetFetchLink } from "./CategoryPageMethods";
 import CategorySelector from "./CategorySelector";
 import PageNavigations from "./PageNavigations";
 
@@ -27,15 +25,11 @@ export default function CategoryPage() {
   }, [page]);
 
   function FetchData() {
-    axios
-      .get(
-        `https://api.themoviedb.org/3/${mediaType}/${categoryList}?api_key=982f680fcfc113f532f791142a6598c1&language=en-US&page=${page}`
-      )
-      .then((res) => {
-        const data = res.data;
-        setPagesCount(data.total_pages);
-        setList(data.results);
-      });
+    axios.get(GetFetchLink({ mediaType, categoryList, page })).then((res) => {
+      const data = res.data;
+      setPagesCount(data.total_pages);
+      setList(data.results);
+    });
   }
 
   function changePage(increment = 1) {

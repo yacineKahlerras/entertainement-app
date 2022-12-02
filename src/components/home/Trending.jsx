@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import TrendingSlide from "./TrendingSlide";
+import React from "react";
 import Slides from "./TrendingSlideGroup";
 
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Swiper } from "swiper/react";
 import { Pagination } from "swiper";
 
 import "swiper/css";
