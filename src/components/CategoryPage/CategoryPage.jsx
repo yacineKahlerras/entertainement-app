@@ -49,7 +49,11 @@ export default function CategoryPage() {
             mediaType === "movie" ? "" : "header-category-tv"
           }`}
         >
-          {mediaType === "movie" ? "Movies" : "TV series"}
+          {mediaType === "movie"
+            ? "Movies"
+            : mediaType === "tv"
+            ? "TV series"
+            : "All"}
         </span>
         <CategorySelector mediaType={mediaType} />
       </header>

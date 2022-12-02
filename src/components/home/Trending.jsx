@@ -1,18 +1,25 @@
 import React from "react";
-import Slides from "./TrendingSlideGroup";
+import TrendingSlides from "./TrendingSlides";
 
 import { Swiper } from "swiper/react";
 import { Pagination } from "swiper";
 
 import "swiper/css";
 import "swiper/css/pagination";
+import { Link } from "react-router-dom";
 
 export default function Trending(props) {
   return (
     <div className="trending-container">
       <header className="section-header">
         <h1>Trending</h1>
-        <button>see more</button>
+        <Link
+          to={`/category/?categoryList=trending&mediaType=${
+            props.mediaType ? props.mediaType : "all"
+          }`}
+        >
+          <button>see more</button>
+        </Link>
       </header>
       <Swiper
         slidesPerView={"auto"}
@@ -24,7 +31,7 @@ export default function Trending(props) {
         modules={[Pagination]}
         className="mySwiper"
       >
-        {Slides(props.mediaType ? props.mediaType : undefined)}
+        {TrendingSlides(props.mediaType ? props.mediaType : undefined)}
       </Swiper>
     </div>
   );

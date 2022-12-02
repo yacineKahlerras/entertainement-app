@@ -26,7 +26,7 @@ export default function HomeSectionSlide(props) {
   // slide information based on wether its a movie or tv-show
   const slideTitle = video === false ? title : original_name;
   const year = video === false ? release_date : first_air_date;
-  const genre = video === false ? "movie" : "TV series";
+  const genre = video === false ? "Movie" : "TV series";
   const imgSrc = backdrop_path !== null ? backdrop_path : poster_path;
 
   useEffect(() => {

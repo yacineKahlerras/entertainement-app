@@ -3,7 +3,7 @@ import axios from "axios";
 import TrendingSlide from "./TrendingSlide";
 import { SwiperSlide } from "swiper/react";
 
-export default function Slides(mediaType = "all") {
+export default function TrendingSlides(mediaType = "all") {
   const [list, setList] = useState([]);
 
   useEffect(() => {
