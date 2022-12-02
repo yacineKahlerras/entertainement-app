@@ -96,33 +96,19 @@
   }
   .dropdown:checked + label,
   .dropdown:not(:checked) + label {
-    position: relative;
-    font-family: "Roboto", sans-serif;
-    font-weight: 500;
-    font-size: 15px;
-    line-height: 2;
-    height: 50px;
-    transition: all 200ms linear;
-    border-radius: 4px;
-    width: 220px;
-    letter-spacing: 1px;
-    display: -webkit-inline-flex;
-    display: -ms-inline-flexbox;
-    display: inline-flex;
-    -webkit-align-items: center;
-    -moz-align-items: center;
-    -ms-align-items: center;
+    display: flex;
     align-items: center;
-    -webkit-justify-content: center;
-    -moz-justify-content: center;
-    -ms-justify-content: center;
     justify-content: center;
-    -ms-flex-pack: center;
     text-align: center;
+
+    position: relative;
+    transition: all 200ms linear;
+    border-radius: 1.7em;
     border: none;
     background-color: $blue;
-    cursor: pointer;
     box-shadow: 0 12px 35px 0 rgba(180, 167, 255, 0.068);
+    cursor: pointer;
+    padding: 0.5em 2em;
   }
   .dark-light:checked ~ .sec-center .for-dropdown {
     background-color: #102770;
@@ -159,9 +145,10 @@
     position: absolute;
     padding: 5px;
     background-color: #111;
-    top: 70px;
-    left: 0;
+    top: 7rem;
+    left: -1rem;
     width: 100%;
+    min-width: 16rem;
     border-radius: 4px;
     display: block;
     box-shadow: 0 14px 35px 0 rgba(9, 9, 12, 0.4);
@@ -192,13 +179,13 @@
   }
   .section-dropdown:after {
     position: absolute;
-    top: -7px;
-    left: 30px;
+    top: -0.7rem;
+    left: 6.8rem;
     width: 0;
     height: 0;
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 8px solid #111;
+    border-left: 0.8rem solid transparent;
+    border-right: 0.8rem solid transparent;
+    border-bottom: 0.8rem solid #111;
     content: "";
     display: block;
     z-index: 2;

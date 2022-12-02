@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { createSearchParams, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import HomeSectionSlide from "../home/HomeSectionSlide";
 import { GetTitle } from "./CategoryPageMethods";
 import leftArrowIcon from "../../assets/arrow-left-short.svg";
@@ -16,6 +16,8 @@ export default function CategoryPage() {
   const mediaType = searchParams.get("mediaType");
   const categoryList = searchParams.get("categoryList");
 
+  console.log("render");
+
   useEffect(() => {
     axios
       .get(
@@ -27,6 +29,10 @@ export default function CategoryPage() {
         setList(data.results);
       });
   }, [page]);
+
+  useEffect(() => {
+    setPage(1);
+  }, [categoryList]);
 
   function changePage(increment = 1) {
     const newPageIndex = page + increment;
@@ -47,7 +53,7 @@ export default function CategoryPage() {
         >
           {mediaType === "movie" ? "Movies" : "TV series"}
         </span>
-        <CategorySelector />
+        <CategorySelector mediaType={mediaType} />
       </header>
 
       {/* pages slides */}

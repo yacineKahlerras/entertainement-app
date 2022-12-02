@@ -1,6 +1,9 @@
 import React from "react";
+import { DropDownElements } from "./CategoryPageMethods";
 
-export default function CategorySelector() {
+export default function CategorySelector(props) {
+  const { mediaType } = props;
+
   return (
     <div className="category-dropdown-container">
       <div className="sec-center">
@@ -11,36 +14,9 @@ export default function CategorySelector() {
           name="dropdown"
         />
         <label className="for-dropdown" htmlFor="dropdown">
-          Category <i className="uil uil-arrow-down"></i>
+          Category
         </label>
-        <div className="section-dropdown">
-          <a href="#">
-            Dropdown Link <i className="uil uil-arrow-right"></i>
-          </a>
-          <input
-            className="dropdown-sub"
-            type="checkbox"
-            id="dropdown-sub"
-            name="dropdown-sub"
-          />
-          <label className="for-dropdown-sub" htmlFor="dropdown-sub">
-            Dropdown Sub <i className="uil uil-plus"></i>
-          </label>
-          <div className="section-dropdown-sub">
-            <a href="#">
-              Dropdown Link <i className="uil uil-arrow-right"></i>
-            </a>
-            <a href="#">
-              Dropdown Link <i className="uil uil-arrow-right"></i>
-            </a>
-          </div>
-          <a href="#">
-            Dropdown Link <i className="uil uil-arrow-right"></i>
-          </a>
-          <a href="#">
-            Dropdown Link <i className="uil uil-arrow-right"></i>
-          </a>
-        </div>
+        <DropDownElements mediaType={mediaType} />
       </div>
     </div>
   );
