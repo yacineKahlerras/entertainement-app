@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import movieLogo from "../../assets/icon-category-movie.svg";
 
 export default function HomeSectionSlide(props) {
+  const coverImg = useRef();
   const {
     item: {
       id,
@@ -15,13 +16,14 @@ export default function HomeSectionSlide(props) {
       poster_path,
     },
   } = props;
-  const coverImg = useRef();
-  if (coverImg.current) console.log(coverImg.current.offsetWidth);
+
+  // calculates the height of the cover image based on an aspect ratio
   function slideCoverContainerHeight() {
     if (!coverImg.current) return {};
     return { height: `${coverImg.current.offsetWidth * 0.5668}px` };
   }
 
+  // slide information based on wether its a movie or tv-show
   const slideTitle = video === false ? title : original_name;
   const year = video === false ? release_date : first_air_date;
   const genre = video === false ? "movie" : "TV series";
@@ -34,6 +36,7 @@ export default function HomeSectionSlide(props) {
   return (
     <Link to={`/${video === false ? "movie" : "tv-show"}/${id}`}>
       <div className="home-section-slide">
+        {/* slide cover image */}
         <div
           ref={coverImg}
           className="slide-cover-container"
@@ -45,9 +48,11 @@ export default function HomeSectionSlide(props) {
             alt={title}
           ></img>
         </div>
+
+        {/* slide text info */}
         <div className="home-section-slide-text">
           <span className="info">
-            {String(year).substring(0, 4)}{" "}
+            {String(year).substring(0, 4)}
             <img src={movieLogo} alt="movie logo"></img> {genre}
           </span>
           <span className="title">{slideTitle}</span>

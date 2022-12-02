@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useSearchParams } from "react-router-dom";
+import { createSearchParams, useSearchParams } from "react-router-dom";
 import HomeSectionSlide from "../home/HomeSectionSlide";
 import { GetTitle } from "./CategoryPageMethods";
 import leftArrowIcon from "../../assets/arrow-left-short.svg";
 import rightArrowIcon from "../../assets/arrow-right-short.svg";
+import CategorySelector from "./CategorySelector";
 
 export default function CategoryPage() {
   const [list, setList] = useState([]);
@@ -40,6 +41,7 @@ export default function CategoryPage() {
 
   return (
     <div className="home-section category-section">
+      {/* section header */}
       <header className="section-header">
         <h1>{GetTitle(categoryList)}</h1>
         <span
@@ -49,6 +51,7 @@ export default function CategoryPage() {
         >
           {mediaType === "movie" ? "Movies" : "TV series"}
         </span>
+        <CategorySelector />
       </header>
 
       {/* pages slides */}
