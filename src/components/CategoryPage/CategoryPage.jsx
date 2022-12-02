@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
 import HomeSectionSlide from "../home/HomeSectionSlide";
@@ -8,11 +8,11 @@ import rightArrowIcon from "../../assets/arrow-right-short.svg";
 import CategorySelector from "./CategorySelector";
 
 export default function CategoryPage() {
+  const [searchParams] = useSearchParams();
   const [list, setList] = useState([]);
   const [page, setPage] = useState(1);
   const [pagesCount, setPagesCount] = useState(0);
 
-  const [searchParams] = useSearchParams();
   const mediaType = searchParams.get("mediaType");
   const categoryList = searchParams.get("categoryList");
 
@@ -29,10 +29,6 @@ export default function CategoryPage() {
         setList(data.results);
       });
   }, [page]);
-
-  useEffect(() => {
-    setPage(1);
-  }, [categoryList]);
 
   function changePage(increment = 1) {
     const newPageIndex = page + increment;

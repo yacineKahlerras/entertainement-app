@@ -127,9 +127,9 @@
     cursor: auto;
     pointer-events: none;
   }
-  .dropdown:checked + label:before {
-    pointer-events: auto;
-  }
+  //   .dropdown:checked + label:before {
+  //     pointer-events: auto;
+  //   }
   .dropdown:not(:checked) + label .uil {
     font-size: 24px;
     margin-left: 10px;
