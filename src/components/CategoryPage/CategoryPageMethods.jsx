@@ -2,6 +2,7 @@ import { sectionData } from "../Home";
 import { api_key } from "../../App";
 import React from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 /** gets the title of the section */
 export function GetTitle(categoryList) {
@@ -16,9 +17,9 @@ export function GetTitle(categoryList) {
  *  from that media type
  */
 export function DropDownElements(props) {
-  const { mediaType } = props;
+  const { mediaType, genresList } = props;
 
-  const dropDownLinks = sectionData.map((element, index) => {
+  const dropDownLinks = sectionData.map((element) => {
     if (element.mediaType === mediaType)
       return (
         <Link
@@ -39,6 +40,16 @@ export function DropDownElements(props) {
       Trending
     </Link>
   );
+  for (let i = 0; i < genresList.length; i++) {
+    dropDownLinks.push(
+      <Link
+        key={genresList[i].name}
+        to={`/category/?categoryList=${genresList[i].name}&mediaType=${mediaType}`}
+      >
+        {genresList[i].name}
+      </Link>
+    );
+  }
 
   return <div className="section-dropdown">{dropDownLinks}</div>;
 }
@@ -47,10 +58,21 @@ export function DropDownElements(props) {
  *  based on some data
  */
 export function GetFetchLink(props) {
-  const { mediaType, categoryList, page } = props;
+  const { mediaType, categoryList, page, genresList } = props;
+  let newLink = undefined;
 
   if (categoryList === "trending") {
     return `https://api.themoviedb.org/3/trending/${mediaType}/day?api_key=${api_key}&page=${page}`;
+  }
+  genresList.forEach((genre) => {
+    if (categoryList == genre.name) {
+      console.log("mamamamamama");
+      newLink = `https://api.themoviedb.org/3/discover/${mediaType}?api_key=${api_key}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_genres=${genre.id}&with_watch_monetization_types=flatrate`;
+    }
+  });
+  console.log(newLink);
+  if (newLink != undefined) {
+    return newLink;
   }
   return `https://api.themoviedb.org/3/${mediaType}/${categoryList}?api_key=${api_key}&language=en-US&page=${page}`;
 }

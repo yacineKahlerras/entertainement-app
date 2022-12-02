@@ -2,7 +2,7 @@ import React from "react";
 import { DropDownElements } from "./CategoryPageMethods";
 
 export default function CategorySelector(props) {
-  const { mediaType } = props;
+  const { mediaType, genresList } = props;
 
   return (
     <div className="category-dropdown-container">
@@ -16,7 +16,7 @@ export default function CategorySelector(props) {
         <label className="for-dropdown" htmlFor="dropdown">
           Category
         </label>
-        <DropDownElements mediaType={mediaType} />
+        <DropDownElements mediaType={mediaType} genresList={genresList} />
       </div>
     </div>
   );
