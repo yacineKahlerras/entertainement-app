@@ -44,6 +44,15 @@ export default function CategoryPage() {
         setPagesCount(data.total_pages);
         setList(data.results);
       });
+    else {
+      console.log("bonkers : ", {
+        mediaType,
+        categoryName,
+        page,
+        genresList,
+        isGenres,
+      });
+    }
   }
 
   useEffect(() => {
