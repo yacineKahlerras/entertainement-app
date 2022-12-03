@@ -23,7 +23,6 @@ export default function SearchBar(props) {
             defaultValue={query}
             name="query"
             onChange={(event) => {
-              console.log("eyooooo");
               submit(event.currentTarget.form);
             }}
           />
