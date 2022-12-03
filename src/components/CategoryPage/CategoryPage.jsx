@@ -8,15 +8,19 @@ import { api_key } from "../../App";
 import { CategoryPageSlides } from "./CategoryPageSlides";
 
 export default function CategoryPage() {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [list, setList] = useState([]);
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(
+    searchParams.get("page") ? parseInt(searchParams.get("page")) : 1
+  );
   const [pagesCount, setPagesCount] = useState(0);
   const [genresList, setGenresList] = useState([]);
 
   const mediaType = searchParams.get("mediaType");
   const categoryName = searchParams.get("categoryName");
   const isGenres = searchParams.get("isGenres");
+
+  console.log("page : ", page);
 
   // gets the genres list
   function FetchGenres() {
@@ -56,6 +60,7 @@ export default function CategoryPage() {
   }, [categoryName]);
 
   FetchGenres(() => {
+    console.log("hahahahah");
     FetchGenres();
   }, [page]);
 
@@ -63,6 +68,8 @@ export default function CategoryPage() {
     const newPageIndex = page + increment;
     if (newPageIndex < 1 || newPageIndex > pagesCount) return;
     setPage(newPageIndex);
+    searchParams.set("page", parseInt(newPageIndex));
+    setSearchParams(searchParams);
     window.scrollTo(0, 0);
   }
 
