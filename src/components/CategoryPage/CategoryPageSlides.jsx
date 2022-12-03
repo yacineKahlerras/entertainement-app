@@ -3,7 +3,8 @@ import HomeSectionSlide from "../home/HomeSectionSlide";
 
 export default function CategoryPageSlides(list) {
   const newList = list.map((element, index) => {
-    return <HomeSectionSlide key={index} item={element} />;
+    if (element.media_type === "movie" || element.media_type === "tv")
+      return <HomeSectionSlide key={index} item={element} />;
   });
   return newList;
 }
