@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
-import HomeSectionSlide from "../home/HomeSectionSlide";
 import { GetTitle, GetFetchLink } from "./CategoryPageMethods";
 import CategorySelector from "./CategorySelector";
 import PageNavigations from "./PageNavigations";
 import { api_key } from "../../App";
+import CategoryPageSlides from "./CategoryPageSlides";
 
 export default function CategoryPage() {
   const [searchParams] = useSearchParams();
@@ -78,7 +78,7 @@ export default function CategoryPage() {
       </header>
 
       {/* pages slides */}
-      <div className="display-map">{slides(list)}</div>
+      <div className="display-map">{CategoryPageSlides(list)}</div>
 
       {/* next and previous page buttons */}
       <PageNavigations
@@ -88,11 +88,4 @@ export default function CategoryPage() {
       />
     </div>
   );
-}
-
-function slides(list) {
-  const newList = list.map((element, index) => {
-    return <HomeSectionSlide key={index} item={element} />;
-  });
-  return newList;
 }
