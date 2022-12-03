@@ -4,22 +4,23 @@ import PageNavigations from "../CategoryPage/PageNavigations";
 import { api_key } from "../../App";
 import CategoryPageSlides from "../CategoryPage/CategoryPageSlides";
 
-export default function SearchPage() {
+export default function SearchPage(props) {
   const [list, setList] = useState([]);
   const [page, setPage] = useState(1);
   const [pagesCount, setPagesCount] = useState(0);
+  const { query } = props;
+
+  useEffect(() => {
+    GetItemsList();
+  }, [query, page]);
 
   // gets the list of the things
   function GetItemsList() {
-    const fetchedLink = GetFetchLink({
-      mediaType,
-      categoryName,
-      page,
-      genresList,
-      isGenres,
-    });
-    if (fetchedLink)
-      axios.get(fetchedLink).then((res) => {
+    axios
+      .get(
+        `https://api.themoviedb.org/3/search/multi?api_key=${api_key}&language=en-US&query=${query}&page=${page}&include_adult=false`
+      )
+      .then((res) => {
         const data = res.data;
         setPagesCount(data.total_pages);
         setList(data.results);
@@ -37,7 +38,7 @@ export default function SearchPage() {
     <div className="home-section category-section">
       {/* section header */}
       <header className="section-header">
-        <h1>Search</h1>
+        <h1>Searching : {query}</h1>
         <span className={`header-category `}>{"All"}</span>
       </header>
 

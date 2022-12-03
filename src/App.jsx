@@ -10,13 +10,14 @@ export const DataContext = createContext(["haha"]);
 
 export default function App() {
   const { query } = useLoaderData();
+  let isSearching = false;
+  if (query != null && query.length > 0) isSearching = true;
 
   return (
     <main>
       <Nav />
       <SearchBar query={query} />
-      <Outlet />
-      {/* <SearchPage /> */}
+      {!isSearching ? <Outlet /> : <SearchPage query={query} />}
     </main>
   );
 }
