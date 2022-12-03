@@ -53,7 +53,7 @@ export default function CategoryPage() {
 
   useEffect(() => {
     FetchData();
-  }, [page, genresList]);
+  }, [page]);
 
   function changePage(increment = 1) {
     const newPageIndex = page + increment;

@@ -2,7 +2,6 @@ import { sectionData } from "../Home";
 import { api_key } from "../../App";
 import React from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 
 /** gets the title of the section */
 export function GetTitle(categoryName, genresList) {
@@ -12,7 +11,7 @@ export function GetTitle(categoryName, genresList) {
       return sectionData[i].title;
   }
   for (let i = 0; i < genresList.length; i++) {
-    if (categoryName === genresList[i].name) return genresList[i].name;
+    if (categoryName == genresList[i].id) return genresList[i].name;
   }
 }
 
@@ -49,7 +48,7 @@ export function DropDownElements(props) {
     dropDownLinks.push(
       <Link
         key={genresList[i].name}
-        to={`/category/?categoryName=${genresList[i].name}&mediaType=${mediaType}&isGenres=true`}
+        to={`/category/?categoryName=${genresList[i].id}&mediaType=${mediaType}&isGenres=true`}
       >
         {genresList[i].name}
       </Link>
@@ -68,7 +67,7 @@ export function GetFetchLink(props) {
 
   if (isGenres) {
     genresList.forEach((genre) => {
-      if (categoryName == genre.name) {
+      if (categoryName == genre.id) {
         newLink = `https://api.themoviedb.org/3/discover/${mediaType}?api_key=${api_key}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_genres=${genre.id}&with_watch_monetization_types=flatrate`;
       }
     });
