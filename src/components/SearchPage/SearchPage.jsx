@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PageNavigations from "../CategoryPage/PageNavigations";
 import { api_key } from "../../App";
-import CategoryPageSlides from "../CategoryPage/CategoryPageSlides";
+import { SearchPageSlides } from "../CategoryPage/CategoryPageSlides";
 
 export default function SearchPage(props) {
   const [list, setList] = useState([]);
@@ -43,7 +43,7 @@ export default function SearchPage(props) {
       </header>
 
       {/* pages slides */}
-      <div className="display-map">{CategoryPageSlides(list)}</div>
+      <div className="display-map">{SearchPageSlides(list)}</div>
 
       {/* next and previous page buttons */}
       <PageNavigations

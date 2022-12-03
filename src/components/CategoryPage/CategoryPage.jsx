@@ -5,7 +5,7 @@ import { GetTitle, GetFetchLink } from "./CategoryPageMethods";
 import CategorySelector from "./CategorySelector";
 import PageNavigations from "./PageNavigations";
 import { api_key } from "../../App";
-import CategoryPageSlides from "./CategoryPageSlides";
+import { CategoryPageSlides } from "./CategoryPageSlides";
 
 export default function CategoryPage() {
   const [searchParams] = useSearchParams();
