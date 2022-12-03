@@ -18,8 +18,8 @@ export default function CategoryPage() {
   const categoryName = searchParams.get("categoryName");
   const isGenres = searchParams.get("isGenres");
 
-  function FetchData() {
-    // gets the genres list
+  // gets the genres list
+  function FetchGenres() {
     const genresMediaType = mediaType === "all" ? "movie" : mediaType;
     axios
       .get(
@@ -29,8 +29,10 @@ export default function CategoryPage() {
         const data = res.data;
         setGenresList(data.genres);
       });
+  }
 
-    // gets the list of the things
+  // gets the list of the things
+  function GetItemsList() {
     const fetchedLink = GetFetchLink({
       mediaType,
       categoryName,
@@ -44,24 +46,17 @@ export default function CategoryPage() {
         setPagesCount(data.total_pages);
         setList(data.results);
       });
-    else {
-      console.log("bonkers : ", {
-        mediaType,
-        categoryName,
-        page,
-        genresList,
-        isGenres,
-      });
-    }
   }
 
+  useEffect(() => GetItemsList(), [genresList]);
+
   useEffect(() => {
-    FetchData();
+    FetchGenres();
     setPage(1);
   }, [categoryName]);
 
-  useEffect(() => {
-    FetchData();
+  FetchGenres(() => {
+    FetchGenres();
   }, [page]);
 
   function changePage(increment = 1) {
