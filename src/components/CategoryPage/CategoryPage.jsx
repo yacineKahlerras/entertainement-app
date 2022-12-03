@@ -15,13 +15,15 @@ export default function CategoryPage() {
   const [genresList, setGenresList] = useState([]);
 
   const mediaType = searchParams.get("mediaType");
-  const categoryList = searchParams.get("categoryList");
+  const categoryName = searchParams.get("categoryName");
+  const isGenres = searchParams.get("isGenres");
 
   function FetchData() {
     // gets the genres list
+    const genresMediaType = mediaType === "all" ? "movie" : mediaType;
     axios
       .get(
-        `https://api.themoviedb.org/3/genre/${mediaType}/list?api_key=${api_key}&language=en-US`
+        `https://api.themoviedb.org/3/genre/${genresMediaType}/list?api_key=${api_key}&language=en-US`
       )
       .then((res) => {
         const data = res.data;
@@ -29,24 +31,29 @@ export default function CategoryPage() {
       });
 
     // gets the list of the things
-    if (genresList.length > 0)
-      axios
-        .get(GetFetchLink({ mediaType, categoryList, page, genresList }))
-        .then((res) => {
-          const data = res.data;
-          setPagesCount(data.total_pages);
-          setList(data.results);
-        });
+    const fetchedLink = GetFetchLink({
+      mediaType,
+      categoryName,
+      page,
+      genresList,
+      isGenres,
+    });
+    if (fetchedLink)
+      axios.get(fetchedLink).then((res) => {
+        const data = res.data;
+        setPagesCount(data.total_pages);
+        setList(data.results);
+      });
   }
 
   useEffect(() => {
     FetchData();
     setPage(1);
-  }, [categoryList]);
+  }, [categoryName]);
 
   useEffect(() => {
     FetchData();
-  }, [page]);
+  }, [page, genresList]);
 
   function changePage(increment = 1) {
     const newPageIndex = page + increment;
@@ -59,7 +66,7 @@ export default function CategoryPage() {
     <div className="home-section category-section">
       {/* section header */}
       <header className="section-header">
-        <h1>{GetTitle(categoryList)}</h1>
+        <h1>{GetTitle(categoryName, genresList)}</h1>
         <span
           className={`header-category ${
             mediaType === "movie" ? "" : "header-category-tv"

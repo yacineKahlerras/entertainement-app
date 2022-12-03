@@ -14,7 +14,7 @@ export default function Trending(props) {
       <header className="section-header">
         <h1>Trending</h1>
         <Link
-          to={`/category/?categoryList=trending&mediaType=${
+          to={`/category/?categoryName=trending&mediaType=${
             props.mediaType ? props.mediaType : "all"
           }`}
         >

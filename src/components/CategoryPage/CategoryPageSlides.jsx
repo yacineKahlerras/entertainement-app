@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import HomeSectionSlide from "../home/HomeSectionSlide";
 
 export default function CategoryPageSlides(list) {

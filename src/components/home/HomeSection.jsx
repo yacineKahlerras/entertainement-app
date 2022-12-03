@@ -37,7 +37,7 @@ export default function HomeSection(props) {
           {mediaType === "movie" ? "Movies" : "TV series"}
         </span>
         <Link
-          to={`/category/?categoryList=${linkKeyword}&mediaType=${mediaType}`}
+          to={`/category/?categoryName=${linkKeyword}&mediaType=${mediaType}`}
         >
           <button>see more</button>
         </Link>

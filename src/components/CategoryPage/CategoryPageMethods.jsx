@@ -5,11 +5,14 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 /** gets the title of the section */
-export function GetTitle(categoryList) {
-  if (categoryList === "trending") return "Trending";
+export function GetTitle(categoryName, genresList) {
+  if (categoryName === "trending") return "Trending";
   for (let i = 0; i < sectionData.length; i++) {
-    if (categoryList === sectionData[i].linkKeyword)
+    if (categoryName === sectionData[i].linkKeyword)
       return sectionData[i].title;
+  }
+  for (let i = 0; i < genresList.length; i++) {
+    if (categoryName === genresList[i].name) return genresList[i].name;
   }
 }
 
@@ -24,7 +27,7 @@ export function DropDownElements(props) {
       return (
         <Link
           key={element.title}
-          to={`/category/?categoryList=${element.linkKeyword}&mediaType=${mediaType}`}
+          to={`/category/?categoryName=${element.linkKeyword}&mediaType=${mediaType}`}
         >
           {element.title}
         </Link>
@@ -33,18 +36,20 @@ export function DropDownElements(props) {
   dropDownLinks.push(
     <Link
       key={"Trending"}
-      to={`/category/?categoryList=trending&mediaType=${
+      to={`/category/?categoryName=trending&mediaType=${
         mediaType === "all" ? "all" : mediaType
       }`}
     >
       Trending
     </Link>
   );
+
+  // genres dropdown
   for (let i = 0; i < genresList.length; i++) {
     dropDownLinks.push(
       <Link
         key={genresList[i].name}
-        to={`/category/?categoryList=${genresList[i].name}&mediaType=${mediaType}`}
+        to={`/category/?categoryName=${genresList[i].name}&mediaType=${mediaType}&isGenres=true`}
       >
         {genresList[i].name}
       </Link>
@@ -58,21 +63,23 @@ export function DropDownElements(props) {
  *  based on some data
  */
 export function GetFetchLink(props) {
-  const { mediaType, categoryList, page, genresList } = props;
+  const { mediaType, categoryName, page, genresList, isGenres } = props;
   let newLink = undefined;
 
-  if (categoryList === "trending") {
+  if (isGenres) {
+    genresList.forEach((genre) => {
+      if (categoryName == genre.name) {
+        newLink = `https://api.themoviedb.org/3/discover/${mediaType}?api_key=${api_key}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_genres=${genre.id}&with_watch_monetization_types=flatrate`;
+      }
+    });
+    if (newLink != undefined) {
+      return newLink;
+    }
+    return;
+  }
+
+  if (categoryName === "trending") {
     return `https://api.themoviedb.org/3/trending/${mediaType}/day?api_key=${api_key}&page=${page}`;
   }
-  genresList.forEach((genre) => {
-    if (categoryList == genre.name) {
-      console.log("mamamamamama");
-      newLink = `https://api.themoviedb.org/3/discover/${mediaType}?api_key=${api_key}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}&with_genres=${genre.id}&with_watch_monetization_types=flatrate`;
-    }
-  });
-  console.log(newLink);
-  if (newLink != undefined) {
-    return newLink;
-  }
-  return `https://api.themoviedb.org/3/${mediaType}/${categoryList}?api_key=${api_key}&language=en-US&page=${page}`;
+  return `https://api.themoviedb.org/3/${mediaType}/${categoryName}?api_key=${api_key}&language=en-US&page=${page}`;
 }
