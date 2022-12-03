@@ -8,12 +8,14 @@ import Home from "./components/Home";
 import MoviesPage from "./components/movies/MoviesPage";
 import SingleItemPage from "./components/singleItemPage/SingleItemPage";
 import TvShows from "./components/tvShow/TvShows";
+import { SearchLoader } from "./components/SearchPage/SearchMethods";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     errorElement: <ErrorPage />,
+    loader: SearchLoader,
     children: [
       {
         index: true,
