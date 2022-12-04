@@ -6,6 +6,7 @@ import CategorySelector from "./CategorySelector";
 import PageNavigations from "./PageNavigations";
 import { api_key } from "../../App";
 import { CategoryPageSlides } from "./CategoryPageSlides";
+import { useRef } from "react";
 
 export default function CategoryPage() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -16,11 +17,9 @@ export default function CategoryPage() {
   const [pagesCount, setPagesCount] = useState(0);
   const [genresList, setGenresList] = useState([]);
 
+  const categoryName = useRef(String(searchParams.get("categoryName")));
   const mediaType = searchParams.get("mediaType");
-  const categoryName = searchParams.get("categoryName");
   const isGenres = searchParams.get("isGenres");
-
-  console.log("page : ", page);
 
   // gets the genres list
   function FetchGenres() {
@@ -39,7 +38,7 @@ export default function CategoryPage() {
   function GetItemsList() {
     const fetchedLink = GetFetchLink({
       mediaType,
-      categoryName,
+      categoryName: categoryName.current,
       page,
       genresList,
       isGenres,
@@ -52,16 +51,19 @@ export default function CategoryPage() {
       });
   }
 
-  useEffect(() => GetItemsList(), [genresList]);
+  useEffect(() => {
+    GetItemsList();
+  }, [genresList]);
+
+  if (categoryName.current !== searchParams.get("categoryName")) {
+    categoryName.current = searchParams.get("categoryName");
+    FetchGenres();
+    setPage(1);
+  }
 
   useEffect(() => {
     FetchGenres();
-    setPage(1);
-  }, [categoryName]);
-
-  FetchGenres(() => {
-    console.log("hahahahah");
-    FetchGenres();
+    setSearchParams(searchParams);
   }, [page]);
 
   function changePage(increment = 1) {
@@ -77,7 +79,7 @@ export default function CategoryPage() {
     <div className="home-section category-section">
       {/* section header */}
       <header className="section-header">
-        <h1>{GetTitle(categoryName, genresList)}</h1>
+        <h1>{GetTitle(categoryName.current, genresList)}</h1>
         <span
           className={`header-category ${
             mediaType === "movie" ? "" : "header-category-tv"
