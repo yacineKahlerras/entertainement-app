@@ -1,6 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  createHashRouter,
+} from "react-router-dom";
 import App from "./App";
 import CategoryPage from "./components/CategoryPage/CategoryPage";
 import ErrorPage from "./components/error-page";
@@ -10,7 +14,7 @@ import SingleItemPage from "./components/singleItemPage/SingleItemPage";
 import TvShows from "./components/tvShow/TvShows";
 import { SearchLoader } from "./components/SearchPage/SearchMethods";
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <App />,
