@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import HomeSectionSlide from "./HomeSectionSlide";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { trackWindowScroll } from "react-lazy-load-image-component";
 
-export default function HomeSection(props) {
+function HomeSection(props) {
   const [list, setList] = useState([]);
   const { headerTitle, mediaType, linkKeyword, sectionSizeLimit } = props;
 
@@ -46,3 +47,5 @@ export default function HomeSection(props) {
     </div>
   );
 }
+
+export default trackWindowScroll(HomeSection);

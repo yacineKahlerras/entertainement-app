@@ -1,4 +1,6 @@
-import React, { useEffect, useRef } from "react";
+import { Skeleton } from "@mui/material";
+import React, { useEffect, useRef, useState } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
 import movieLogo from "../../assets/icon-category-movie.svg";
 
@@ -27,7 +29,6 @@ export default function HomeSectionSlide(props) {
   const slideTitle = video === false ? title : original_name;
   const year = video === false ? release_date : first_air_date;
   const genre = video === false ? "Movie" : "TV series";
-  const imgSrc = backdrop_path !== null ? backdrop_path : poster_path;
 
   useEffect(() => {
     window.addEventListener("resize", slideCoverContainerHeight);
@@ -42,11 +43,20 @@ export default function HomeSectionSlide(props) {
           className="slide-cover-container"
           style={slideCoverContainerHeight()}
         >
-          <img
-            className="slide-cover"
-            src={`https://image.tmdb.org/t/p/w500${imgSrc}`}
-            alt={title}
-          ></img>
+          {backdrop_path ? (
+            <LazyLoadImage
+              src={`https://image.tmdb.org/t/p/w500${backdrop_path}`}
+              className="slide-cover"
+              alt={title}
+            />
+          ) : (
+            <Skeleton
+              width="100%"
+              height="100%"
+              sx={{ transform: "scale(1)", minHeight: "14rem" }}
+              animation="wave"
+            />
+          )}
         </div>
 
         {/* slide text info */}
