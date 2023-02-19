@@ -60,6 +60,8 @@ export default function SingleItemPage(props) {
     title: title,
   };
 
+  window.scrollTo(0, 0);
+
   if (itemInfo.length < 1) return;
   return (
     <div className="single-page-container">

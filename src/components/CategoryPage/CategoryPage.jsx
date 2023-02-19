@@ -74,8 +74,9 @@ export default function CategoryPage() {
     setPage(newPageIndex);
     searchParams.set("page", parseInt(newPageIndex));
     setSearchParams(searchParams);
-    window.scrollTo(0, 0);
   }
+
+  window.scrollTo(0, 0);
 
   return (
     <div className="home-section category-section">
