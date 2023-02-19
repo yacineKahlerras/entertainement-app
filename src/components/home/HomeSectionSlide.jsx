@@ -42,7 +42,7 @@ export default function HomeSectionSlide(props) {
             <Skeleton
               width="100%"
               height="100%"
-              sx={{ transform: "scale(1)" }}
+              sx={{ transform: "scale(1)", minHeight: "14rem" }}
               animation="wave"
             />
           )}
