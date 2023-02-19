@@ -19,30 +19,16 @@ export default function HomeSectionSlide(props) {
     },
   } = props;
 
-  // calculates the height of the cover image based on an aspect ratio
-  function slideCoverContainerHeight() {
-    if (!coverImg.current) return {};
-    return { height: `${coverImg.current.offsetWidth * 0.562}px` };
-  }
-
   // slide information based on wether its a movie or tv-show
   const slideTitle = video === false ? title : original_name;
   const year = video === false ? release_date : first_air_date;
   const genre = video === false ? "Movie" : "TV series";
 
-  useEffect(() => {
-    window.addEventListener("resize", slideCoverContainerHeight);
-  }, []);
-
   return (
     <Link to={`/${video === false ? "movie" : "tv-show"}/${id}`}>
       <div className="home-section-slide">
         {/* slide cover image */}
-        <div
-          ref={coverImg}
-          className="slide-cover-container"
-          style={slideCoverContainerHeight()}
-        >
+        <div ref={coverImg} className="slide-cover-container">
           {backdrop_path ? (
             <LazyLoadImage
               src={`https://image.tmdb.org/t/p/w500${backdrop_path}`}
