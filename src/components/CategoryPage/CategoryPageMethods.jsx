@@ -19,12 +19,13 @@ export function GetTitle(categoryName, genresList) {
  *  from that media type
  */
 export function DropDownElements(props) {
-  const { mediaType, genresList } = props;
+  const { mediaType, genresList, clickHandle } = props;
 
   const dropDownLinks = sectionData.map((element) => {
     if (element.mediaType === mediaType)
       return (
         <Link
+          onClick={clickHandle}
           key={element.title}
           to={`/category/?categoryName=${element.linkKeyword}&mediaType=${mediaType}`}
         >
@@ -32,8 +33,10 @@ export function DropDownElements(props) {
         </Link>
       );
   });
+
   dropDownLinks.push(
     <Link
+      onClick={clickHandle}
       key={"Trending"}
       to={`/category/?categoryName=trending&mediaType=${
         mediaType === "all" ? "all" : mediaType
@@ -47,6 +50,7 @@ export function DropDownElements(props) {
   for (let i = 0; i < genresList.length; i++) {
     dropDownLinks.push(
       <Link
+        onClick={clickHandle}
         key={genresList[i].name}
         to={`/category/?categoryName=${genresList[i].id}&mediaType=${mediaType}&isGenres=true`}
       >
