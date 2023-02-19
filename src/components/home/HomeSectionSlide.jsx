@@ -25,7 +25,10 @@ export default function HomeSectionSlide(props) {
   const genre = video === false ? "Movie" : "TV series";
 
   return (
-    <Link to={`/${video === false ? "movie" : "tv-show"}/${id}`}>
+    <Link
+      className="home-section-slide-link"
+      to={`/${video === false ? "movie" : "tv-show"}/${id}`}
+    >
       <div className="home-section-slide">
         {/* slide cover image */}
         <div ref={coverImg} className="slide-cover-container">
@@ -39,7 +42,7 @@ export default function HomeSectionSlide(props) {
             <Skeleton
               width="100%"
               height="100%"
-              sx={{ transform: "scale(1)", minHeight: "14rem" }}
+              sx={{ transform: "scale(1)" }}
               animation="wave"
             />
           )}
