@@ -28,10 +28,12 @@ main {
   // this is each section's header
   .section-header {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     color: $white;
     margin-bottom: 2rem;
     padding: 0 1.5rem;
+    row-gap: 1rem;
 
     h1 {
       margin-right: 2rem;

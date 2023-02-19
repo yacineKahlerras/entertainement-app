@@ -1,6 +1,8 @@
 @use "../utils/" as *;
 
 .category-dropdown-container {
+  margin-left: auto;
+
   .sec-center {
     position: relative;
     max-width: 100%;
@@ -57,14 +59,14 @@
       z-index: 2;
       opacity: 0;
       pointer-events: none;
-      transform: translate(-50%, 2rem);
+      transform: translate(-46%, 2rem);
       transition: all 200ms linear;
     }
 
     .dropdown:checked ~ .section-dropdown {
       opacity: 1;
       pointer-events: auto;
-      transform: translate(-50%, 0);
+      transform: translate(-46%, 0);
     }
 
     a {
