@@ -4,6 +4,7 @@ import PageNavigations from "../CategoryPage/PageNavigations";
 import { api_key } from "../../App";
 import { SearchPageSlides } from "../CategoryPage/CategoryPageSlides";
 import { useSearchParams } from "react-router-dom";
+import LoadingCircle from "../loading/LoadingCircle";
 
 export default function SearchPage(props) {
   const [list, setList] = useState([]);
@@ -13,6 +14,7 @@ export default function SearchPage(props) {
   );
   const [pagesCount, setPagesCount] = useState(0);
   const { query } = props;
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     GetItemsList();
@@ -22,6 +24,7 @@ export default function SearchPage(props) {
 
   // gets the list of the things
   function GetItemsList() {
+    setIsLoading(true);
     axios
       .get(
         `https://api.themoviedb.org/3/search/multi?api_key=${api_key}&language=en-US&query=${query}&page=${page}&include_adult=false`
@@ -30,6 +33,7 @@ export default function SearchPage(props) {
         const data = res.data;
         setPagesCount(data.total_pages);
         setList(data.results);
+        setIsLoading(false);
       });
   }
 
@@ -46,6 +50,9 @@ export default function SearchPage(props) {
       <header className="section-header">
         <h1>Searching : {query}</h1>
         <span className={`header-category `}>{"All"}</span>
+        <div style={{ display: isLoading ? "block" : "none" }}>
+          <LoadingCircle size={40} />
+        </div>
       </header>
 
       {/* pages slides */}

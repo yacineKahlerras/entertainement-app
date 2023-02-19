@@ -59,11 +59,13 @@ export default function CategoryPage() {
     categoryName.current = searchParams.get("categoryName");
     FetchGenres();
     setPage(1);
+    setList([]);
   }
 
   useEffect(() => {
     FetchGenres();
     setSearchParams(searchParams);
+    setList([]);
   }, [page]);
 
   function changePage(increment = 1) {

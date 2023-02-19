@@ -3,6 +3,7 @@ import HomeSectionSlide from "./HomeSectionSlide";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { trackWindowScroll } from "react-lazy-load-image-component";
+import LoadingCircle from "../loading/LoadingCircle";
 
 function HomeSection(props) {
   const [list, setList] = useState([]);
@@ -20,6 +21,7 @@ function HomeSection(props) {
   }, []);
 
   function slides() {
+    if (!list.length) return <LoadingCircle />;
     const newList = list.map((element, index) => {
       return <HomeSectionSlide key={index} item={element} />;
     });
