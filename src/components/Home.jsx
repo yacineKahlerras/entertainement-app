@@ -48,8 +48,6 @@ export const sectionData = [
 export default function Home() {
   const sectionSizeLimit = 9;
 
-  console.log("Home");
-
   const sectionElements = sectionData.map((sec, index) => {
     return (
       <HomeSection

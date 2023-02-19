@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import TrendingSlide from "./TrendingSlide";
 import { SwiperSlide } from "swiper/react";
+import LoadingCircle from "../loading/LoadingCircle";
 
 export default function TrendingSlides(mediaType = "all") {
   const [list, setList] = useState([]);
@@ -37,5 +38,5 @@ export default function TrendingSlides(mediaType = "all") {
     );
   });
 
-  return allSlides;
+  return list.length ? allSlides : <LoadingCircle />;
 }
