@@ -108,7 +108,7 @@ export default function CategoryPage() {
       />
 
       {/* pages slides */}
-      {/* <div className="display-map">{CategoryPageSlides(list)}</div> */}
+      <div className="display-map">{CategoryPageSlides(list)}</div>
 
       {/* next and previous page buttons */}
       <PageNavigations

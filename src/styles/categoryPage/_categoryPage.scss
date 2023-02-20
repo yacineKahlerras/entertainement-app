@@ -4,12 +4,20 @@
   padding-top: 3rem;
   color: $white;
 
+  .display-map {
+    min-height: 50rem;
+  }
+
   .page-buttons-container {
     width: 100%;
     margin-top: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;
+
+    &:first-of-type {
+      margin-bottom: 3rem;
+    }
 
     button {
       display: flex;
