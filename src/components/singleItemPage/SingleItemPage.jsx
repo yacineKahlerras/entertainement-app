@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import ItemInfo from "./ItemInfo";
 import RatingStars from "./RatingStars";
@@ -9,8 +9,9 @@ import ItemWebsites from "./ItemWebsites";
 import LoadingCircle from "../loading/LoadingCircle";
 import arrowLeft from "@/assets/arrow-left.svg";
 
-export default function SingleItemPage(props) {
+export default function SingleItemPage() {
   const [itemInfo, setItemInfo] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
@@ -62,21 +63,30 @@ export default function SingleItemPage(props) {
     title: title,
   };
 
+  function backPage() {
+    navigate(-1);
+  }
+
   window.scrollTo(0, 0);
 
   if (itemInfo.length < 1) return <LoadingCircle />;
   return (
     <div className="single-page-container">
+      {/* back button */}
       <div className="back-btn-container">
-        <button>
+        <button onClick={backPage}>
           <img src={arrowLeft} alt="arrow left" /> Back
         </button>
       </div>
+
+      {/* poster */}
       <img
         className="item-poster"
         src={`https://image.tmdb.org/t/p/w500${poster_path}`}
         alt={title}
       />
+
+      {/* movie text info */}
       <div className="text-side">
         <h1 className="title">{isMovie ? title : original_name}</h1>
         <span className="tagline">{tagline}</span>
