@@ -7,6 +7,7 @@ import Genres from "./Genres";
 import Casts from "./Casts";
 import ItemWebsites from "./ItemWebsites";
 import LoadingCircle from "../loading/LoadingCircle";
+import arrowLeft from "@/assets/arrow-left.svg";
 
 export default function SingleItemPage(props) {
   const [itemInfo, setItemInfo] = useState([]);
@@ -66,6 +67,11 @@ export default function SingleItemPage(props) {
   if (itemInfo.length < 1) return <LoadingCircle />;
   return (
     <div className="single-page-container">
+      <div className="back-btn-container">
+        <button>
+          <img src={arrowLeft} alt="arrow left" /> Back
+        </button>
+      </div>
       <img
         className="item-poster"
         src={`https://image.tmdb.org/t/p/w500${poster_path}`}
