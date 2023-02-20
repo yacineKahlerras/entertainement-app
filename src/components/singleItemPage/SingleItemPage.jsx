@@ -6,6 +6,7 @@ import RatingStars from "./RatingStars";
 import Genres from "./Genres";
 import Casts from "./Casts";
 import ItemWebsites from "./ItemWebsites";
+import LoadingCircle from "../loading/LoadingCircle";
 
 export default function SingleItemPage(props) {
   const [itemInfo, setItemInfo] = useState([]);
@@ -62,7 +63,7 @@ export default function SingleItemPage(props) {
 
   window.scrollTo(0, 0);
 
-  if (itemInfo.length < 1) return;
+  if (itemInfo.length < 1) return <LoadingCircle />;
   return (
     <div className="single-page-container">
       <img
