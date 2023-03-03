@@ -29,14 +29,18 @@ export default function SearchPage() {
   function GetItemsList() {
     setIsLoading(true);
     axios
-      .get(
-        `https://api.themoviedb.org/3/search/multi?api_key=${api_key}&language=en-US&query=${query}&page=${page}&include_adult=false`
-      )
+      .get("/api/search", {
+        body: JSON.stringify({
+          query: query,
+          page: page,
+        }),
+      })
       .then((res) => {
-        const data = res.data;
-        setPagesCount(data.total_pages);
-        setList(data.results);
-        setIsLoading(false);
+        // const data = res.data;
+        // setPagesCount(data.total_pages);
+        // setList(data.results);
+        // setIsLoading(false);
+        console.log(res);
       });
   }
 
