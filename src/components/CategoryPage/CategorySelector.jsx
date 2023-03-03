@@ -1,5 +1,7 @@
 import React, { useRef } from "react";
 import { DropDownElements } from "./CategoryPageMethods";
+import arrowDown from "@/assets/caret-down-fill.svg";
+import Image from "next/image";
 
 export default function CategorySelector(props) {
   const { mediaType, genresList } = props;
@@ -27,7 +29,7 @@ export default function CategorySelector(props) {
           ref={checkBoxRef}
         />
         <label className="for-dropdown" htmlFor="dropdown">
-          Category
+          Category <Image src={arrowDown} alt="arrow down" />
         </label>
         <DropDownElements
           mediaType={mediaType}

@@ -22,6 +22,7 @@
       align-items: center;
       justify-content: center;
       text-align: center;
+      gap: 0.6em;
 
       position: relative;
       transition: all 200ms linear;
@@ -31,6 +32,10 @@
       box-shadow: 0 12px 35px 0 rgba(180, 167, 255, 0.068);
       cursor: pointer;
       padding: 0.5em 2em;
+
+      img {
+        filter: invert(1);
+      }
     }
 
     //   .dropdown:checked + label:before {
