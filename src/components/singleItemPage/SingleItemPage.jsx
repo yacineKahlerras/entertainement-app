@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import ItemInfo from "./ItemInfo";
 import RatingStars from "./RatingStars";
@@ -9,14 +8,16 @@ import ItemWebsites from "./ItemWebsites";
 import LoadingCircle from "../loading/LoadingCircle";
 import arrowLeft from "@/assets/arrow-left.svg";
 
-export default function SingleItemPage() {
+export default function SingleItemPage(props) {
+  const { mediaType, mediaId } = props;
+  const isMovie = mediaType == "movie";
+  const mediaTypeForUrl = mediaType == "movie" ? "movie" : "tv";
   const [itemInfo, setItemInfo] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     axios
       .get(
-        `https://api.themoviedb.org/3/${mediaType}/${id}?api_key=982f680fcfc113f532f791142a6598c1&language=en-US`
+        `https://api.themoviedb.org/3/${mediaTypeForUrl}/${mediaId}?api_key=982f680fcfc113f532f791142a6598c1&language=en-US`
       )
       .then((res) => {
         const persons = res.data;
@@ -42,11 +43,6 @@ export default function SingleItemPage() {
     imdb_id,
   } = itemInfo;
 
-  const paramsId = useParams();
-  const isMovie = paramsId.movieId ? true : false;
-  const mediaType = isMovie ? "movie" : "tv";
-  const id = isMovie ? paramsId.movieId : paramsId.tvId;
-
   const rating = (vote_average / 2).toFixed(1);
   const itemInfoProps = {
     isMovie: isMovie,
@@ -67,7 +63,7 @@ export default function SingleItemPage() {
     navigate(-1);
   }
 
-  window.scrollTo(0, 0);
+  // window.scrollTo(0, 0);
 
   if (itemInfo.length < 1) return <LoadingCircle />;
   return (
@@ -97,7 +93,7 @@ export default function SingleItemPage() {
           <h3>Synopsis</h3>
           <p>{overview}</p>
         </div>
-        <Casts id={id} mediaType={isMovie ? "movie" : "tv"} />
+        <Casts id={mediaId} mediaType={isMovie ? "movie" : "tv"} />
         <ItemWebsites {...itemWebsitesProps} />
       </div>
     </div>

@@ -1,33 +1,33 @@
+import Image from "next/image";
 import React, { useEffect } from "react";
-import { Form, useLoaderData, useSubmit } from "react-router-dom";
+// import { Form, useLoaderData, useSubmit } from "react-router-dom";
 import searchIcon from "../assets/icon-search.svg";
 
 export default function SearchBar(props) {
-  const submit = useSubmit();
-  const { query } = props;
+  // const submit = useSubmit();
 
-  useEffect(() => {
-    document.getElementById("query").value = query;
-  }, [query]);
+  // useEffect(() => {
+  //   document.getElementById("query").value = query;
+  // }, [query]);
 
   return (
     <div className="searchBar-container">
       <div className="searchBar">
-        <img src={searchIcon} alt="search icon"></img>
-        <Form id="search-form" role="search">
+        <Image src={searchIcon} alt="search icon" />
+        <form id="search-form">
           <input
             id="query"
             aria-label="Search movies/tv-shows"
             type="search"
             placeholder="Search for movies or TVs"
-            defaultValue={query}
+            // defaultValue={query}
             name="query"
-            onChange={(event) => {
-              submit(event.currentTarget.form);
-            }}
+            // onChange={(event) => {
+            //   submit(event.currentTarget.form);
+            // }}
           />
           <button>search</button>
-        </Form>
+        </form>
       </div>
     </div>
   );

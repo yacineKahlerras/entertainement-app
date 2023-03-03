@@ -1,8 +1,9 @@
 import { Skeleton } from "@mui/material";
 import React, { useEffect, useRef, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import movieLogo from "../../assets/icon-category-movie.svg";
+import Image from "next/image";
 
 export default function HomeSectionSlide(props) {
   const coverImg = useRef();
@@ -27,7 +28,7 @@ export default function HomeSectionSlide(props) {
   return (
     <Link
       className="home-section-slide-link"
-      to={`/${video === false ? "movie" : "tv-show"}/${id}`}
+      href={`/${video === false ? "movie" : "tv-show"}/${id}`}
     >
       <div className="home-section-slide">
         {/* slide cover image */}
@@ -52,7 +53,7 @@ export default function HomeSectionSlide(props) {
         <div className="home-section-slide-text">
           <span className="info">
             {String(year).substring(0, 4)}
-            <img src={movieLogo} alt="movie logo"></img> {genre}
+            <Image src={movieLogo} alt="movie logo" /> {genre}
           </span>
           <span className="title">{slideTitle}</span>
         </div>

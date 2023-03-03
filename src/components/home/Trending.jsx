@@ -6,7 +6,7 @@ import { Pagination } from "swiper";
 
 import "swiper/css";
 import "swiper/css/pagination";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 export default function Trending(props) {
   return (
@@ -14,7 +14,7 @@ export default function Trending(props) {
       <header className="section-header">
         <h1>Trending</h1>
         <Link
-          to={`/category/?categoryName=trending&mediaType=${
+          href={`/category/?categoryName=trending&mediaType=${
             props.mediaType ? props.mediaType : "all"
           }`}
         >

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import HomeSectionSlide from "./HomeSectionSlide";
 import axios from "axios";
-import { Link } from "react-router-dom";
 import { trackWindowScroll } from "react-lazy-load-image-component";
 import LoadingCircle from "../loading/LoadingCircle";
+import Link from "next/link";
 
 function HomeSection(props) {
   const [list, setList] = useState([]);
@@ -40,7 +40,7 @@ function HomeSection(props) {
           {mediaType === "movie" ? "Movies" : "TV series"}
         </span>
         <Link
-          to={`/category/?categoryName=${linkKeyword}&mediaType=${mediaType}`}
+          href={`/category/?categoryName=${linkKeyword}&mediaType=${mediaType}`}
         >
           <button>see more</button>
         </Link>

@@ -3,46 +3,47 @@ import logo from "../assets/logo.svg";
 import homeLogo from "../assets/icon-nav-home.svg";
 import moviesLogo from "../assets/icon-nav-movies.svg";
 import tvLogo from "../assets/icon-nav-tv-series.svg";
-import { Link, useLocation } from "react-router-dom";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function Nav() {
-  const location = useLocation();
+  const location = "/"; //useLocation();
 
   return (
     <nav>
       <ul>
         <li>
-          <Link to={"/"}>
-            <img src={logo} alt="logo"></img>
+          <Link href={"/"}>
+            <Image src={logo} alt="logo" />
           </Link>
         </li>
         <li>
-          <Link to={"/"}>
-            <img
+          <Link href={"/"}>
+            <Image
               className={location.pathname == "/" ? "selected-page" : ""}
               src={homeLogo}
               alt="home button"
-            ></img>
+            />
           </Link>
         </li>
         <li>
-          <Link to={"/movies"}>
-            <img
+          <Link href={"/movies"}>
+            <Image
               className={location.pathname == "/movies" ? "selected-page" : ""}
               src={moviesLogo}
               alt="movies button"
-            ></img>
+            />
           </Link>
         </li>
         <li>
-          <Link to={"/tv-shows"}>
-            <img
+          <Link href={"/tv-shows"}>
+            <Image
               className={
                 location.pathname == "/tv-shows" ? "selected-page" : ""
               }
               src={tvLogo}
               alt="tv button"
-            ></img>
+            />
           </Link>
         </li>
       </ul>
