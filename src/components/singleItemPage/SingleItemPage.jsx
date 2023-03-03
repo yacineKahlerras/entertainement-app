@@ -7,6 +7,7 @@ import Casts from "./Casts";
 import ItemWebsites from "./ItemWebsites";
 import LoadingCircle from "../loading/LoadingCircle";
 import arrowLeft from "@/assets/arrow-left.svg";
+import Image from "next/image";
 
 export default function SingleItemPage(props) {
   const { mediaType, mediaId } = props;
@@ -71,7 +72,7 @@ export default function SingleItemPage(props) {
       {/* back button */}
       <div className="back-btn-container">
         <button onClick={backPage}>
-          <img src={arrowLeft} alt="arrow left" /> Back
+          <Image src={arrowLeft} alt="arrow left" /> Back
         </button>
       </div>
 

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 import starEmpty from "../../assets/star-empty.svg";
 import starFull from "../../assets/star-full.svg";
@@ -15,18 +16,18 @@ export default function RatingStars(props) {
 
   for (let i = 0; i < fullStarsCount; i++) {
     fullStarsElements.push(
-      <img key={i} src={starFull} alt="full star icon" className="star" />
+      <Image key={i} src={starFull} alt="full star icon" className="star" />
     );
   }
 
   for (let i = 0; i < emptyStarsCount; i++) {
     emptyStarsElements.push(
-      <img key={i} src={starEmpty} alt="full star icon" className="star" />
+      <Image key={i} src={starEmpty} alt="full star icon" className="star" />
     );
   }
 
   const halfStarElement = halfStar ? (
-    <img src={starHalfFull} alt="half full star icon" className="star" />
+    <Image src={starHalfFull} alt="half full star icon" className="star" />
   ) : (
     ""
   );

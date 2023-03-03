@@ -1,6 +1,7 @@
 import React from "react";
 import websiteIcon from "../../assets/link-icon.svg";
 import imdbIcon from "../../assets/imdb-icon.svg";
+import Image from "next/image";
 
 export default function ItemWebsites(props) {
   const { homepage, imdb_id, title } = props;
@@ -8,7 +9,7 @@ export default function ItemWebsites(props) {
   return (
     <div className="item-links-container">
       <a href={homepage} className="home-page-link" target={"_blank"}>
-        Website <img src={websiteIcon} alt={`${title} homepage`} />
+        Website <Image src={websiteIcon} alt={`${title} homepage`} />
       </a>
 
       {imdb_id ? (
@@ -17,7 +18,7 @@ export default function ItemWebsites(props) {
           className="imdb-link"
           target={"_blank"}
         >
-          IMDB <img src={imdbIcon} alt={`${title} homepage`} />
+          IMDB <Image src={imdbIcon} alt={`${title} homepage`} />
         </a>
       ) : (
         ""
