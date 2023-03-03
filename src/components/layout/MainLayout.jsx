@@ -1,9 +1,14 @@
 import Head from "next/head";
+import { useRouter } from "next/router";
 import React from "react";
 import Nav from "../Nav";
 import SearchBar from "../SearchBar";
+import SearchPage from "../SearchPage/SearchPage";
 
 export default function MainLayout({ children }) {
+  const router = useRouter();
+  const { query } = router.query;
+
   return (
     <main>
       <Head>
@@ -14,7 +19,7 @@ export default function MainLayout({ children }) {
       </Head>
       <Nav />
       <SearchBar />
-      {children}
+      {query && query != "" ? <SearchPage /> : children}
     </main>
   );
 }

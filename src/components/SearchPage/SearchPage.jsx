@@ -3,23 +3,22 @@ import axios from "axios";
 import PageNavigations from "../CategoryPage/PageNavigations";
 import { api_key } from "../../App";
 import { SearchPageSlides } from "../CategoryPage/CategoryPageSlides";
-import { useSearchParams } from "react-router-dom";
 import LoadingCircle from "../loading/LoadingCircle";
+import { useRouter } from "next/router";
 
 export default function SearchPage(props) {
+  const router = useRouter();
+  const { pageIdx, query } = router.query;
   const [list, setList] = useState([]);
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [page, setPage] = useState(
-    searchParams.get("page") ? searchParams.get("page") : 1
-  );
+  const [page, setPage] = useState(1);
   const [pagesCount, setPagesCount] = useState(0);
-  const { query } = props;
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     GetItemsList();
-    searchParams.set("page", page);
-    setSearchParams(searchParams);
+    router.replace({
+      query: { ...router.query, pageIdx: page },
+    });
   }, [query, page]);
 
   // gets the list of the things

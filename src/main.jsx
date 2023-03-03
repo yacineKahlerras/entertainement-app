@@ -1,10 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
-import {
-  createBrowserRouter,
-  RouterProvider,
-  createHashRouter,
-} from "react-router-dom";
+import { createHashRouter } from "react-router-dom";
 import App from "./App";
 import CategoryPage from "./components/CategoryPage/CategoryPage";
 import ErrorPage from "./components/error-page";
