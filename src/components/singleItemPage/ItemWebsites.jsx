@@ -9,7 +9,13 @@ export default function ItemWebsites(props) {
   return (
     <div className="item-links-container">
       <a href={homepage} className="home-page-link" target={"_blank"}>
-        Website <Image src={websiteIcon} alt={`${title} homepage`} />
+        Website{" "}
+        <Image
+          src={websiteIcon}
+          alt={`${title} homepage`}
+          width="auto"
+          height="auto"
+        />
       </a>
 
       {imdb_id ? (
@@ -18,7 +24,13 @@ export default function ItemWebsites(props) {
           className="imdb-link"
           target={"_blank"}
         >
-          IMDB <Image src={imdbIcon} alt={`${title} homepage`} />
+          IMDB{" "}
+          <Image
+            src={imdbIcon}
+            alt={`${title} homepage`}
+            width="auto"
+            height={30}
+          />
         </a>
       ) : (
         ""

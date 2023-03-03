@@ -8,12 +8,14 @@ import ItemWebsites from "./ItemWebsites";
 import LoadingCircle from "../loading/LoadingCircle";
 import arrowLeft from "@/assets/arrow-left.svg";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 export default function SingleItemPage(props) {
   const { mediaType, mediaId } = props;
   const isMovie = mediaType == "movie";
   const mediaTypeForUrl = mediaType == "movie" ? "movie" : "tv";
   const [itemInfo, setItemInfo] = useState([]);
+  const router = useRouter();
 
   useEffect(() => {
     axios
@@ -61,10 +63,8 @@ export default function SingleItemPage(props) {
   };
 
   function backPage() {
-    navigate(-1);
+    router.back();
   }
-
-  // window.scrollTo(0, 0);
 
   if (itemInfo.length < 1) return <LoadingCircle />;
   return (

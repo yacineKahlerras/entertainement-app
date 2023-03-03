@@ -1,28 +1,26 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useSearchParams } from "react-router-dom";
 import { GetTitle, GetFetchLink } from "./CategoryPageMethods";
 import CategorySelector from "./CategorySelector";
 import PageNavigations from "./PageNavigations";
 import { api_key } from "../../App";
 import { CategoryPageSlides } from "./CategoryPageSlides";
-import { useRef } from "react";
+import { useRouter } from "next/router";
 
 export default function CategoryPage() {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const router = useRouter();
+  const query = router.query;
+  const { categoryName, mediaType, isGenres } = query;
+
   const [list, setList] = useState([]);
-  const [page, setPage] = useState(
-    searchParams.get("page") ? parseInt(searchParams.get("page")) : 1
-  );
+  const [page, setPage] = useState(query.page ? query.page : 1);
+
   const [pagesCount, setPagesCount] = useState(0);
   const [genresList, setGenresList] = useState([]);
 
-  const categoryName = useRef(String(searchParams.get("categoryName")));
-  const mediaType = searchParams.get("mediaType");
-  const isGenres = searchParams.get("isGenres");
-
   // gets the genres list
   function FetchGenres() {
+    if (!mediaType) return;
     const genresMediaType = mediaType === "all" ? "movie" : mediaType;
     axios
       .get(
@@ -36,9 +34,10 @@ export default function CategoryPage() {
 
   // gets the list of the things
   function GetItemsList() {
+    if (!mediaType) return;
     const fetchedLink = GetFetchLink({
       mediaType,
-      categoryName: categoryName.current,
+      categoryName: categoryName,
       page,
       genresList,
       isGenres,
@@ -55,16 +54,14 @@ export default function CategoryPage() {
     GetItemsList();
   }, [genresList]);
 
-  if (categoryName.current !== searchParams.get("categoryName")) {
-    categoryName.current = searchParams.get("categoryName");
+  useEffect(() => {
     FetchGenres();
     setPage(1);
     setList([]);
-  }
+  }, [categoryName]);
 
   useEffect(() => {
     FetchGenres();
-    setSearchParams(searchParams);
     setList([]);
   }, [page]);
 
@@ -72,17 +69,16 @@ export default function CategoryPage() {
     const newPageIndex = page + increment;
     if (newPageIndex < 1 || newPageIndex > pagesCount) return;
     setPage(newPageIndex);
-    searchParams.set("page", parseInt(newPageIndex));
-    setSearchParams(searchParams);
+    router.replace({
+      query: { ...router.query, page: parseInt(newPageIndex) },
+    });
   }
-
-  window.scrollTo(0, 0);
 
   return (
     <div className="home-section category-section">
       {/* section header */}
       <header className="section-header">
-        <h1>{GetTitle(categoryName.current, genresList)}</h1>
+        <h1>{GetTitle(categoryName, genresList)}</h1>
         <span
           className={`header-category ${
             mediaType === "movie" ? "" : "header-category-tv"

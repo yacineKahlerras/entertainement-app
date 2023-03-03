@@ -1,7 +1,7 @@
 import { sectionData } from "../Home";
 import { api_key } from "../../App";
 import React from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 
 /** gets the title of the section */
 export function GetTitle(categoryName, genresList) {
@@ -27,7 +27,7 @@ export function DropDownElements(props) {
         <Link
           onClick={clickHandle}
           key={element.title}
-          to={`/category/?categoryName=${element.linkKeyword}&mediaType=${mediaType}`}
+          href={`/category/?categoryName=${element.linkKeyword}&mediaType=${mediaType}`}
         >
           {element.title}
         </Link>
@@ -38,7 +38,7 @@ export function DropDownElements(props) {
     <Link
       onClick={clickHandle}
       key={"Trending"}
-      to={`/category/?categoryName=trending&mediaType=${
+      href={`/category/?categoryName=trending&mediaType=${
         mediaType === "all" ? "all" : mediaType
       }`}
     >
@@ -52,7 +52,7 @@ export function DropDownElements(props) {
       <Link
         onClick={clickHandle}
         key={genresList[i].name}
-        to={`/category/?categoryName=${genresList[i].id}&mediaType=${mediaType}&isGenres=true`}
+        href={`/category/?categoryName=${genresList[i].id}&mediaType=${mediaType}&isGenres=true`}
       >
         {genresList[i].name}
       </Link>

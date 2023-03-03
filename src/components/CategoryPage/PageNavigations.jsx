@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 import leftArrowIcon from "../../assets/arrow-left-short.svg";
 import rightArrowIcon from "../../assets/arrow-right-short.svg";
@@ -13,7 +14,7 @@ export default function PageNavigations(props) {
         }}
         className="page-button prev-page-button"
       >
-        <img src={leftArrowIcon} alt="left arrow icon" /> Prev
+        <Image src={leftArrowIcon} alt="left arrow icon" /> Prev
       </button>
       <span className="pages-count">
         Page {page} of {pagesCount}
@@ -24,7 +25,7 @@ export default function PageNavigations(props) {
         }}
         className="page-button next-page-button"
       >
-        Next <img src={rightArrowIcon} alt="left arrow icon" />
+        Next <Image src={rightArrowIcon} alt="left arrow icon" />
       </button>
     </div>
   );
