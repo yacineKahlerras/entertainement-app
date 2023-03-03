@@ -10,10 +10,10 @@ import { useRouter } from "next/router";
 export default function CategoryPage() {
   const router = useRouter();
   const query = router.query;
-  const { categoryName, mediaType, isGenres } = query;
+  const { categoryName, mediaType, isGenres, pageIdx } = query;
 
   const [list, setList] = useState([]);
-  const [page, setPage] = useState(query.page ? query.page : 1);
+  const [page, setPage] = useState(1);
 
   const [pagesCount, setPagesCount] = useState(0);
   const [genresList, setGenresList] = useState([]);
@@ -70,9 +70,13 @@ export default function CategoryPage() {
     if (newPageIndex < 1 || newPageIndex > pagesCount) return;
     setPage(newPageIndex);
     router.replace({
-      query: { ...router.query, page: parseInt(newPageIndex) },
+      query: { ...router.query, pageIdx: parseInt(newPageIndex) },
     });
   }
+
+  useEffect(() => {
+    if (pageIdx) setPage(parseInt(pageIdx));
+  }, [query]);
 
   return (
     <div className="home-section category-section">

@@ -14,7 +14,13 @@ export default function PageNavigations(props) {
         }}
         className="page-button prev-page-button"
       >
-        <Image src={leftArrowIcon} alt="left arrow icon" /> Prev
+        <Image
+          src={leftArrowIcon}
+          alt="left arrow icon"
+          width={20}
+          height={20}
+        />{" "}
+        Prev
       </button>
       <span className="pages-count">
         Page {page} of {pagesCount}
@@ -25,7 +31,13 @@ export default function PageNavigations(props) {
         }}
         className="page-button next-page-button"
       >
-        Next <Image src={rightArrowIcon} alt="left arrow icon" />
+        Next{" "}
+        <Image
+          src={rightArrowIcon}
+          alt="left arrow icon"
+          width={20}
+          height={20}
+        />
       </button>
     </div>
   );
