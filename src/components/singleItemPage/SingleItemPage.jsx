@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import ItemInfo from "./ItemInfo";
 import RatingStars from "./RatingStars";
@@ -16,6 +16,7 @@ export default function SingleItemPage(props) {
   const mediaTypeForUrl = mediaType == "movie" ? "movie" : "tv";
   const [itemInfo, setItemInfo] = useState([]);
   const router = useRouter();
+  const coverImgRef = useRef();
 
   useEffect(() => {
     axios
@@ -66,6 +67,10 @@ export default function SingleItemPage(props) {
     router.back();
   }
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
+
   if (itemInfo.length < 1) return <LoadingCircle />;
   return (
     <div className="single-page-container">
@@ -78,6 +83,7 @@ export default function SingleItemPage(props) {
 
       {/* poster */}
       <img
+        ref={coverImgRef}
         className="item-poster"
         src={`https://image.tmdb.org/t/p/w500${poster_path}`}
         alt={title}

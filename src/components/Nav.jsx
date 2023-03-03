@@ -5,9 +5,15 @@ import moviesLogo from "../assets/icon-nav-movies.svg";
 import tvLogo from "../assets/icon-nav-tv-series.svg";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 export default function Nav() {
-  const location = "/"; //useLocation();
+  const router = useRouter();
+  const {
+    query: { mediaType },
+  } = router;
+
+  const location = mediaType ? mediaType : "/";
 
   return (
     <nav>
@@ -20,7 +26,7 @@ export default function Nav() {
         <li>
           <Link href={"/"}>
             <Image
-              className={location.pathname == "/" ? "selected-page" : ""}
+              className={location == "/" ? "selected-page" : ""}
               src={homeLogo}
               alt="home button"
             />
@@ -29,7 +35,7 @@ export default function Nav() {
         <li>
           <Link href={"/movies"}>
             <Image
-              className={location.pathname == "/movies" ? "selected-page" : ""}
+              className={location == "movies" ? "selected-page" : ""}
               src={moviesLogo}
               alt="movies button"
             />
@@ -38,9 +44,7 @@ export default function Nav() {
         <li>
           <Link href={"/tv-shows"}>
             <Image
-              className={
-                location.pathname == "/tv-shows" ? "selected-page" : ""
-              }
+              className={location == "tv-shows" ? "selected-page" : ""}
               src={tvLogo}
               alt="tv button"
             />
