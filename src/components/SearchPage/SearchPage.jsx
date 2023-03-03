@@ -6,13 +6,17 @@ import { SearchPageSlides } from "../CategoryPage/CategoryPageSlides";
 import LoadingCircle from "../loading/LoadingCircle";
 import { useRouter } from "next/router";
 
-export default function SearchPage(props) {
+export default function SearchPage() {
   const router = useRouter();
   const { pageIdx, query } = router.query;
   const [list, setList] = useState([]);
   const [page, setPage] = useState(1);
   const [pagesCount, setPagesCount] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    if (pageIdx) setPage(parseInt(pageIdx));
+  }, [pageIdx]);
 
   useEffect(() => {
     GetItemsList();
@@ -53,6 +57,13 @@ export default function SearchPage(props) {
           <LoadingCircle size={40} />
         </div>
       </header>
+
+      {/* next and previous page buttons */}
+      <PageNavigations
+        changePage={changePage}
+        page={page}
+        pagesCount={pagesCount}
+      />
 
       {/* pages slides */}
       <div className="display-map">{SearchPageSlides(list)}</div>
