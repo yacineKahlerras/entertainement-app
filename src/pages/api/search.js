@@ -1,14 +1,10 @@
-import { api_key } from "@/App";
-import axios from "axios";
-
-export default function handler(req, res) {
+export default async function handler(req, res) {
   const { page, query } = req.body;
+  const api_key = process.env.API_KEY;
 
-  axios
-    .get(
-      `https://api.themoviedb.org/3/search/multi?api_key=${api_key}&language=en-US&query=${query}&page=${page}&include_adult=false`
-    )
-    .then((result) => {
-      res.status(200).json(result);
-    });
+  const response = await fetch(
+    `https://api.themoviedb.org/3/search/multi?api_key=${api_key}&language=en-US&query=${query}&page=${page}&include_adult=false`
+  );
+  const data = await response.json();
+  return res.status(200).json(data);
 }

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import PageNavigations from "../CategoryPage/PageNavigations";
-import { api_key } from "../../App";
 import { SearchPageSlides } from "../CategoryPage/CategoryPageSlides";
 import LoadingCircle from "../loading/LoadingCircle";
 import { useRouter } from "next/router";
@@ -28,20 +27,12 @@ export default function SearchPage() {
   // gets the list of the things
   function GetItemsList() {
     setIsLoading(true);
-    axios
-      .get("/api/search", {
-        body: JSON.stringify({
-          query: query,
-          page: page,
-        }),
-      })
-      .then((res) => {
-        // const data = res.data;
-        // setPagesCount(data.total_pages);
-        // setList(data.results);
-        // setIsLoading(false);
-        console.log(res);
-      });
+    axios.post("/api/search", { query: query, page: page }).then((res) => {
+      const data = res.data;
+      setPagesCount(data.total_pages);
+      setList(data.results);
+      setIsLoading(false);
+    });
   }
 
   function changePage(increment = 1) {
