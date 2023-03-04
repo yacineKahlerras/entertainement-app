@@ -11,9 +11,7 @@ function HomeSection(props) {
 
   useEffect(() => {
     axios
-      .get(
-        `https://api.themoviedb.org/3/${mediaType}/${linkKeyword}?api_key=982f680fcfc113f532f791142a6598c1&language=en-US&page=1`
-      )
+      .post(`/api/group`, { mediaType: mediaType, linkKeyword: linkKeyword })
       .then((res) => {
         const persons = res.data;
         setList(persons.results.slice(0, sectionSizeLimit));

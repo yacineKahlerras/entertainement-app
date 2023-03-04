@@ -20,9 +20,7 @@ export default function SingleItemPage(props) {
 
   useEffect(() => {
     axios
-      .get(
-        `https://api.themoviedb.org/3/${mediaTypeForUrl}/${mediaId}?api_key=982f680fcfc113f532f791142a6598c1&language=en-US`
-      )
+      .post("/api/singleMediaInfo", { mediaTypeForUrl, mediaId })
       .then((res) => {
         const persons = res.data;
         setItemInfo(persons);

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { GetTitle, GetFetchLink } from "./CategoryPageMethods";
+import { GetFetchLink, GetTitle } from "./CategoryPageMethods";
 import CategorySelector from "./CategorySelector";
 import PageNavigations from "./PageNavigations";
-import { api_key } from "../../App";
 import { CategoryPageSlides } from "./CategoryPageSlides";
 import { useRouter } from "next/router";
+import { api_key } from "@/App";
 
 export default function CategoryPage() {
   const router = useRouter();
@@ -22,28 +22,24 @@ export default function CategoryPage() {
   function FetchGenres() {
     if (!mediaType) return;
     const genresMediaType = mediaType === "all" ? "movie" : mediaType;
-    axios
-      .get(
-        `https://api.themoviedb.org/3/genre/${genresMediaType}/list?api_key=${api_key}&language=en-US`
-      )
-      .then((res) => {
-        const data = res.data;
-        setGenresList(data.genres);
-      });
+    axios.post("/api/genres", { genresMediaType }).then((res) => {
+      const data = res.data;
+      setGenresList(data.genres);
+    });
   }
 
   // gets the list of the things
   function GetItemsList() {
     if (!mediaType) return;
-    const fetchedLink = GetFetchLink({
-      mediaType,
-      categoryName: categoryName,
-      page,
-      genresList,
-      isGenres,
-    });
-    if (fetchedLink)
-      axios.get(fetchedLink).then((res) => {
+    axios
+      .post("/api/categoryList", {
+        mediaType,
+        categoryName,
+        page,
+        genresList,
+        isGenres,
+      })
+      .then((res) => {
         const data = res.data;
         setPagesCount(data.total_pages);
         setList(data.results);
