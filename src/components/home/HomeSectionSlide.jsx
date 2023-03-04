@@ -1,6 +1,5 @@
 import { Skeleton } from "@mui/material";
-import React, { useEffect, useRef, useState } from "react";
-import { LazyLoadImage } from "react-lazy-load-image-component";
+import React, { useRef } from "react";
 import Link from "next/link";
 import movieLogo from "../../assets/icon-category-movie.svg";
 import Image from "next/image";
@@ -16,7 +15,6 @@ export default function HomeSectionSlide(props) {
       first_air_date,
       video,
       backdrop_path,
-      poster_path,
     },
   } = props;
 
@@ -24,6 +22,26 @@ export default function HomeSectionSlide(props) {
   const slideTitle = video === false ? title : original_name;
   const year = video === false ? release_date : first_air_date;
   const genre = video === false ? "Movie" : "TV series";
+
+  const imgSkeleton = (
+    <Skeleton
+      width="100%"
+      height="100%"
+      sx={{ transform: "scale(1)", minHeight: "14rem" }}
+      animation="wave"
+    />
+  );
+
+  const imgCoverElement = (
+    <Image
+      src={`https://image.tmdb.org/t/p/w500${backdrop_path}`}
+      className="slide-cover"
+      alt={`cover for ${title}`}
+      width={500}
+      height={140}
+      loading="lazy"
+    />
+  );
 
   return (
     <Link
@@ -33,20 +51,7 @@ export default function HomeSectionSlide(props) {
       <div className="home-section-slide">
         {/* slide cover image */}
         <div ref={coverImg} className="slide-cover-container">
-          {backdrop_path ? (
-            <LazyLoadImage
-              src={`https://image.tmdb.org/t/p/w500${backdrop_path}`}
-              className="slide-cover"
-              alt={title}
-            />
-          ) : (
-            <Skeleton
-              width="100%"
-              height="100%"
-              sx={{ transform: "scale(1)", minHeight: "14rem" }}
-              animation="wave"
-            />
-          )}
+          {backdrop_path ? imgCoverElement : imgSkeleton}
         </div>
 
         {/* slide text info */}
