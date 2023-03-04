@@ -20,6 +20,7 @@ also in the navigation there is a movies only and tv shows only page.
 
 ### Built with
 
+- [NextJs](https://nextjs.org/)
 - [React](https://reactjs.org/)
 - [SCSS](https://sass-lang.com/)
 - [TMDB API](https://developers.themoviedb.org/3)
@@ -29,6 +30,9 @@ also in the navigation there is a movies only and tv shows only page.
 
 ### What I Learned
 
+- migrated this app from a create-react-app to NextJs to hide the TMDB api key in the env variable
+  it was a lot less work than what i thought but it was still a bit annoying switching all the
+  Links and the react-router-dom apis to the next router apis.
 - i gained a better undersanding of how to handle api's because they do not always show the same informations
   or be non-existant or have them in as something different, also reading the documentations and finding
   all the cool ways that i can do with the api is really fun
