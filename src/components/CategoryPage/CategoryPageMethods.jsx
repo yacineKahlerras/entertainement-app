@@ -1,5 +1,4 @@
 import { sectionData } from "../Home";
-import { api_key } from "../../App";
 import React from "react";
 import Link from "next/link";
 

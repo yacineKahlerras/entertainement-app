@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { GetFetchLink, GetTitle } from "./CategoryPageMethods";
+import { GetTitle } from "./CategoryPageMethods";
 import CategorySelector from "./CategorySelector";
 import PageNavigations from "./PageNavigations";
 import { CategoryPageSlides } from "./CategoryPageSlides";
 import { useRouter } from "next/router";
-import { api_key } from "@/App";
 
 export default function CategoryPage() {
   const router = useRouter();
