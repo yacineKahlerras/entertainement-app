@@ -16,7 +16,7 @@ also in the navigation there is a movies only and tv shows only page.
 
 ### Links
 
-- [Live Site URL](https://yacinekahlerras.github.io/entertainement-app/)
+- [Live Site URL](https://entertainement-app.vercel.app/)
 
 ### Built with
 
